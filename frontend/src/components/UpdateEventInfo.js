@@ -7,8 +7,8 @@ function UpdateEventInfo(props) {
   const [event, setEvent] = useState({
     name: '',
     location: '',
-    start: null,
-    end: null,
+    start: '',
+    end: '',
     description: '',
   });
 
@@ -27,7 +27,7 @@ function UpdateEventInfo(props) {
         });
       })
       .catch(err => {
-        console.log('Error from UpdateEventInfo');
+        console.log(err.message);
       });
   }, [id]);
 
@@ -51,7 +51,7 @@ function UpdateEventInfo(props) {
         navigate(`/show-event/${id}`);
       })
       .catch(err => {
-        console.log('Error in UpdateEventInfo!');
+        console.log(err.message);
       });
   };
 
@@ -61,7 +61,7 @@ function UpdateEventInfo(props) {
         <div className='row'>
           <div className='col-md-8 m-auto'>
             <br />
-            <Link to='/' className='btn btn-outline-warning float-left'>
+            <Link to='/' className='btn float-left'>
               Show Event List
             </Link>
           </div>
@@ -102,7 +102,7 @@ function UpdateEventInfo(props) {
             <div className='form-group'>
               <label htmlFor='start'>Start</label>
               <input
-                type='date'
+                type='datetime-local'
                 placeholder='Start'
                 name='start'
                 className='form-control'
@@ -115,7 +115,7 @@ function UpdateEventInfo(props) {
             <div className='form-group'>
               <label htmlFor='end'>End</label>
               <input
-                type='date'
+                type='datetime-local'
                 placeholder='End'
                 name='end'
                 className='form-control'

@@ -12,7 +12,6 @@ connectDB();
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
-
-app.get('/', (req, res) => res.send('Event'));
+app.use('/events', events);
 
 app.listen(port, () => console.log(`Server Running on Port ${port}`));

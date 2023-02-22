@@ -13,7 +13,7 @@ function ShowEventList() {
         setEvents(res.data);
       })
       .catch(err => {
-        console.log('Error from ShowEventList');
+        console.log(err.message);
       });
   }, []);
 
@@ -32,7 +32,7 @@ function ShowEventList() {
           <div className='col-md-11'>
             <Link
               to='/create-event'
-              className='btn btn-outline-warning float-right'
+              className='btn float-right'
             >
               + Add New Event
             </Link>

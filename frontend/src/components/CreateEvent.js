@@ -8,8 +8,8 @@ function CreateEvent(props) {
   const [event, setEvent] = useState({
     name: '',
     location: '',
-    start: null,
-    end: null,
+    start: '',
+    end: '',
     description: ''
   });
 
@@ -24,14 +24,14 @@ function CreateEvent(props) {
         setEvent({
           name: '',
           location: '',
-          start: null,
-          end: null,
+          start: '',
+          end: '',
           description: ''
         });
         navigate('/');
       })
       .catch(err => {
-        console.log('Error in CreateEvent!');
+        console.log(err.message);
       });
   };
 
@@ -41,7 +41,7 @@ function CreateEvent(props) {
         <div className='row'>
           <div className='col-md-8 m-auto'>
             <br />
-            <Link to='/' className='btn btn-outline-warning float-left'>
+            <Link to='/' className='btn float-left'>
               Show Event List
             </Link>
           </div>
@@ -78,7 +78,7 @@ function CreateEvent(props) {
               <div className='form-group'>
                 <label htmlFor='start'>Start</label>
                 <input
-                  type='date'
+                  type='datetime-local'
                   placeholder='Start'
                   name='start'
                   className='form-control'
@@ -90,7 +90,7 @@ function CreateEvent(props) {
               <div className='form-group'>
                 <label htmlFor='end'>End</label>
                 <input
-                  type='date'
+                  type='datetime-local'
                   placeholder='End'
                   name='end'
                   className='form-control'
@@ -112,7 +112,7 @@ function CreateEvent(props) {
               </div>
               <input
                 type='submit'
-                className='btn btn-outline-warning btn-block mt-4'
+                className='btn btn-block mt-4'
               />
             </form>
           </div>

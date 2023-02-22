@@ -50,10 +50,15 @@
 
 .card-container {
   width: 250px;
+  padding: 10px;
   border: 1px solid rgba(0,0,.125);
   margin: 0 auto;
   border-radius: 5px;
   overflow: hidden;
+}
+
+.card-img {
+  padding: 10px;
 }
 
 .btn {
@@ -62,10 +67,24 @@
   color: white;
 }
 
-.btn:hover {
-  background-color: rgb(67, 67, 236);
+.btn-edit {
+  background-color: rgb(15, 72, 28);
+  border: none;
   color: white;
 }
+
+.btn-delete {
+  background-color: rgb(106, 22, 36);
+  border: none;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(67, 67, 236);
+  border: none;
+  color: white;
+}
+
 
 .desc {
   height: 130px;

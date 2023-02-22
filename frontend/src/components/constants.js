@@ -1,3 +1,3 @@
 
-const url = 'http://localhost:8080/events';
+export const url = 'http://localhost:8080/events';
 
