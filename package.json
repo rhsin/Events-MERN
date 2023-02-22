@@ -1,0 +1,25 @@
+{
+  "name": "events-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "app": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.3",
+    "body-parser": "^1.20.1",
+    "confi": "^10.0.1",
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.2",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

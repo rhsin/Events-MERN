@@ -1,0 +1,6 @@
+
+{
+  "mongoURI":
+   "mongodb+srv://events-mern:tWApkWrmN9w0fb1q@events.dceeifc.mongodb.net/?retryWrites=true&w=majority"
+}
+
