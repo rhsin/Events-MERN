@@ -1,17 +1,19 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import ShowEventList from './components/ShowEventList';
+import CreateEvent from './components/CreateEvent';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <Routes>
           <Route exact path='/' element={<ShowEventList />} />
+          <Route path='/create-event' element={<CreateEvent />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

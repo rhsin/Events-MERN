@@ -17,6 +17,12 @@
   color: #61dafb;
 }
 
+.CreateEvent {
+  background-color: #2c3e50;
+  min-height: 100vh;
+  color: white;
+}
+
 .ShowEventList {
   background-color: #2c3e50;
   height: 100%;

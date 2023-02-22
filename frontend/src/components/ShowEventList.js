@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import EventCard from './EventCard';
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:8082/api/events')
-      .then((res) => {
+    axios.get('http://localhost:8080/api/events')
+      .then(res => {
         setEvents(res.data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('Error from ShowEventList');
       });
   }, []);
 
-  const eventList =
-    events.length === 0 ? 'There is no event record!' : 
+  const eventList = events.length === 0 ? 'No Events Found' : 
       events.map((event, k) => <EventCard event={event} key={k} />);
 
   return (

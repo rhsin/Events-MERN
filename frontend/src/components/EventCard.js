@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
 
-const EventCard = (props) => {
+function EventCard(props) {
   const event = props.event;
 
   return (
