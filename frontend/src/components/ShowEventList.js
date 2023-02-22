@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import EventCard from './EventCard';
-import { url } from './constants'; 
+import Map from './Map';
+import { url, location } from './constants'; 
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
@@ -41,8 +42,15 @@ function ShowEventList() {
             <hr />
           </div>
         </div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className='list'>{eventList}</div>
+          </div>
 
-        <div className='list'>{eventList}</div>
+          <div className="col-md-8">
+            <Map location={location} zoomLevel={15} />
+          </div>
+        </div>
       </div>
     </div>
   );
