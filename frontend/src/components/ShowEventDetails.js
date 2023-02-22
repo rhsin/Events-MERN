@@ -34,27 +34,23 @@ function ShowEventDetails(props) {
       <table className='table table-hover table-dark'>
         <tbody>
           <tr>
-            <th scope='row'>1</th>
             <td>Name</td>
             <td>{event.name}</td>
           </tr>
           <tr>
-            <th scope='row'>2</th>
             <td>Location</td>
             <td>{event.location}</td>
           </tr>
           <tr>
-            <th scope='row'>3</th>
+            <th scope='row'></th>
             <td>Start</td>
             <td>{event.start}</td>
           </tr>
           <tr>
-            <th scope='row'>4</th>
             <td>End</td>
             <td>{event.end}</td>
           </tr>
           <tr>
-            <th scope='row'>5</th>
             <td>Description</td>
             <td>{event.description}</td>
           </tr>
