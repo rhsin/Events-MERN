@@ -37,6 +37,12 @@ function ShowEventList() {
             >
               + Add New Event
             </Link>
+            <Link
+              to='/create-category'
+              className='btn float-right'
+            >
+              + Add New Category
+            </Link>
             <br />
             <br />
             <hr />
@@ -48,7 +54,7 @@ function ShowEventList() {
           </div>
 
           <div className="col-md-8">
-            <Map location={location} zoomLevel={15} />
+            {/* <Map location={location} zoomLevel={15} /> */}
           </div>
         </div>
       </div>

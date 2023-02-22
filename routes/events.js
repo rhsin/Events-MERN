@@ -46,8 +46,4 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ error: 'No such a event' }));
 });
 
-// @route GET events/test
-// @description tests events route
-router.get('/test', (req, res) => res.send('event route test'));
-
 module.exports = router;

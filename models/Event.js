@@ -9,6 +9,9 @@ const EventSchema = new mongoose.Schema({
   location: {
     type: String
   },
+  link: {
+    type: String
+  },
   start: {
     type: Date
   },
@@ -17,7 +20,8 @@ const EventSchema = new mongoose.Schema({
   },
   description: {
     type: String
-  }
+  },
+  category: { type: mongoose.Types.ObjectId, ref: "Category" }
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);

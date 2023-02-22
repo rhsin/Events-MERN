@@ -7,6 +7,7 @@ function UpdateEventInfo(props) {
   const [event, setEvent] = useState({
     name: '',
     location: '',
+    link: '',
     start: '',
     end: '',
     description: '',
@@ -21,6 +22,7 @@ function UpdateEventInfo(props) {
         setEvent({
           name: res.data.name,
           location: res.data.location,
+          link: res.data.link,
           start: res.data.start,
           end: res.data.end,
           description: res.data.description
@@ -41,6 +43,7 @@ function UpdateEventInfo(props) {
     const data = {
       name: event.name,
       location: event.location,
+      link: event.link,
       start: event.start,
       end: event.end,
       description: event.description
@@ -94,6 +97,19 @@ function UpdateEventInfo(props) {
                 name='location'
                 className='form-control'
                 value={event.location}
+                onChange={onChange}
+              />
+            </div>
+            <br />
+
+            <div className='form-group'>
+              <label htmlFor='link'>Link</label>
+              <input
+                type='text'
+                placeholder='Link'
+                name='link'
+                className='form-control'
+                value={event.link}
                 onChange={onChange}
               />
             </div>

@@ -43,6 +43,10 @@ function ShowEventDetails(props) {
             <td>{event.location}</td>
           </tr>
           <tr>
+            <td>Link</td>
+            <td>{event.link}</td>
+          </tr>
+          <tr>
             <td>Start</td>
             <td>{moment(event.start).format('MMMM Do YYYY, h:mm a')}</td>
           </tr>

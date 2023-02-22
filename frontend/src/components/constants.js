@@ -1,6 +1,8 @@
 
 export const url = 'http://localhost:8080/events';
 
+export const url_category = 'http://localhost:8080/categories';
+
 export const location = {
   address: '899 Market St, San Francisco, CA 94103',
   lat: 37.784999,

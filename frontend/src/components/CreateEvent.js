@@ -8,6 +8,7 @@ function CreateEvent(props) {
   const [event, setEvent] = useState({
     name: '',
     location: '',
+    link: '',
     start: '',
     end: '',
     description: ''
@@ -24,6 +25,7 @@ function CreateEvent(props) {
         setEvent({
           name: '',
           location: '',
+          link: '',
           start: '',
           end: '',
           description: ''
@@ -76,6 +78,18 @@ function CreateEvent(props) {
               </div>
 
               <div className='form-group'>
+                <label htmlFor='link'>Link</label>
+                <input
+                  type='text'
+                  placeholder='Link'
+                  name='link'
+                  className='form-control'
+                  value={event.link}
+                  onChange={onChange}
+                />
+              </div>
+
+              <div className='form-group'>
                 <label htmlFor='start'>Start</label>
                 <input
                   type='datetime-local'
@@ -120,6 +134,6 @@ function CreateEvent(props) {
       </div>
     </div>
   );
-};
+}
 
 export default CreateEvent;
