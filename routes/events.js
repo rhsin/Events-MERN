@@ -4,7 +4,7 @@ const Event = require('../../models/Event');
 
 const router = express.Router();
 
-// @route GET api/events
+// @route GET events
 // @description Get all events
 router.get('/', (req, res) => {
   Event.find()
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ noeventsfound: 'No Events found' }));
 });
 
-// @route GET api/events/:id
+// @route GET events/:id
 // @description Get single event by i
 router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(404).json({ noeventfound: 'No Event found' }));
 });
 
-// @route GET api/events
+// @route GET events
 // @description add/save event
 router.post('/', (req, res) => {
   Event.create(req.body)
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
     .catch(err => res.status(400).json({ error: 'Unable to add this event' }));
 });
 
-// @route GET api/events/:id
+// @route GET events/:id
 // @description Update event
 router.put('/:id', (req, res) => {
   Event.findByIdAndUpdate(req.params.id, req.body)
@@ -38,7 +38,7 @@ router.put('/:id', (req, res) => {
     );
 });
 
-// @route GET api/events/:id
+// @route GET events/:id
 // @description Delete event by id
 router.delete('/:id', (req, res) => {
   Event.findByIdAndRemove(req.params.id, req.body)
@@ -46,7 +46,7 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ error: 'No such a event' }));
 });
 
-// @route GET api/events/test
+// @route GET events/test
 // @description tests events route
 router.get('/test', (req, res) => res.send('event route test'));
 
