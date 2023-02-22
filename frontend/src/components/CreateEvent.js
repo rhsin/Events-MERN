@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { url } from './constants'; 
 
 function CreateEvent(props) {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function CreateEvent(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/api/events', event)
+    axios.post(url, event)
       .then(res => {
         setEvent({
           name: '',
@@ -50,6 +51,7 @@ function CreateEvent(props) {
 
             <form noValidate onSubmit={onSubmit}>
               <div className='form-group'>
+                <label htmlFor='name'>Name</label>
                 <input
                   type='text'
                   placeholder='Name of the event'
@@ -62,6 +64,7 @@ function CreateEvent(props) {
               <br />
 
               <div className='form-group'>
+                <label htmlFor='location'>Location</label>
                 <input
                   type='text'
                   placeholder='Location'
@@ -73,6 +76,7 @@ function CreateEvent(props) {
               </div>
 
               <div className='form-group'>
+                <label htmlFor='start'>Start</label>
                 <input
                   type='date'
                   placeholder='Start'
@@ -84,6 +88,7 @@ function CreateEvent(props) {
               </div>
 
               <div className='form-group'>
+                <label htmlFor='end'>End</label>
                 <input
                   type='date'
                   placeholder='End'
@@ -95,6 +100,7 @@ function CreateEvent(props) {
               </div>
 
               <div className='form-group'>
+                <label htmlFor='description'>Description</label>
                 <input
                   type='text'
                   placeholder='Describe this event'

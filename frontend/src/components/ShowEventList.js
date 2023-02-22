@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import EventCard from './EventCard';
+import { url } from './constants'; 
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/events')
+    axios.get(url)
       .then(res => {
         setEvents(res.data);
       })
