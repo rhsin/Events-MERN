@@ -55,8 +55,24 @@ function ShowEventDetails(props) {
             <td>{moment(event.end).format('MMMM Do YYYY, h:mm a')}</td>
           </tr>
           <tr>
+            <td>Promoter</td>
+            <td>{event.promoter}</td>
+          </tr>
+          <tr>
             <td>Description</td>
             <td>{event.description}</td>
+          </tr>
+          <tr>
+            <td>Category</td>
+            <td>{event.category}</td>
+          </tr>
+          <tr>
+            <td>Latitude</td>
+            <td>{event.lat}</td>
+          </tr>
+          <tr>
+            <td>Longitude</td>
+            <td>{event.lng}</td>
           </tr>
         </tbody>
       </table>

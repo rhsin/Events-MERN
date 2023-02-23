@@ -9,6 +9,12 @@ const EventSchema = new mongoose.Schema({
   location: {
     type: String
   },
+  lat: {
+    type: Number
+  },
+  lng: {
+    type: Number
+  },
   link: {
     type: String
   },
@@ -18,10 +24,15 @@ const EventSchema = new mongoose.Schema({
   end: {
     type: Date
   },
+  promoter: {
+    type: String
+  },
   description: {
     type: String
   },
-  category: { type: mongoose.Types.ObjectId, ref: "Category" }
+  category: {
+    type: String
+  }
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);

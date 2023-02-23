@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(404).json({ noeventfound: 'No Event found' }));
 });
 
-// @route GET events
+// @route POST events
 // @description add/save event
 router.post('/', (req, res) => {
   Event.create(req.body)
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
     .catch(err => res.status(400).json({ error: 'Unable to add this event' }));
 });
 
-// @route GET events/:id
+// @route PUT events/:id
 // @description Update event
 router.put('/:id', (req, res) => {
   Event.findByIdAndUpdate(req.params.id, req.body)
@@ -38,7 +38,7 @@ router.put('/:id', (req, res) => {
     );
 });
 
-// @route GET events/:id
+// @route DELETE events/:id
 // @description Delete event by id
 router.delete('/:id', (req, res) => {
   Event.findByIdAndRemove(req.params.id, req.body)

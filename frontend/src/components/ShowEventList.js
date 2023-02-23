@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import EventCard from './EventCard';
 import Map from './Map';
-import { url, location } from './constants'; 
+import { url, categories } from './constants'; 
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
+  const [category, setCategory] = useState(null);
 
   useEffect(() => {
     axios.get(url)
@@ -18,8 +19,10 @@ function ShowEventList() {
       });
   }, []);
 
-  const eventList = events.length === 0 ? 'No Events Found' : 
-      events.map((event, k) => <EventCard event={event} key={k} />);
+  const eventList = category ? 
+    events.filter(event => event.category == category)
+      .map((event, k) => <EventCard event={event} key={k} />) :
+         events.map((event, k) => <EventCard event={event} key={k} />);
 
   return (
     <div className='ShowEventList'>
@@ -31,17 +34,20 @@ function ShowEventList() {
           </div>
 
           <div className='col-md-11'>
+            <select onChange={e => setCategory(e.target.value)}>
+              {categories && categories.map((category, i) => 
+                <option value={category} key={i}>{category}</option>
+              )}
+            </select>
+            <select>
+              <option value={16000}>10 miles</option>
+              <option value={32000}>20 miles</option>
+            </select>
             <Link
               to='/create-event'
               className='btn float-right'
             >
               + Add New Event
-            </Link>
-            <Link
-              to='/create-category'
-              className='btn float-right'
-            >
-              + Add New Category
             </Link>
             <br />
             <br />
@@ -54,7 +60,7 @@ function ShowEventList() {
           </div>
 
           <div className="col-md-8">
-            {/* <Map location={location} zoomLevel={15} /> */}
+            <Map events={events} zoomLevel={15} />
           </div>
         </div>
       </div>

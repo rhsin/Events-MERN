@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { url } from './constants'; 
+import { url, categories } from './constants'; 
 
 function CreateEvent(props) {
   const navigate = useNavigate();
+  const [category, setCategory] = useState('Cycling');
   const [event, setEvent] = useState({
     name: '',
     location: '',
+    lat: '',
+    lng: '',
     link: '',
     start: '',
     end: '',
-    description: ''
+    promoter: '',
+    description: '',
+    category: category
   });
 
   const onChange = (e) => {
@@ -25,10 +30,14 @@ function CreateEvent(props) {
         setEvent({
           name: '',
           location: '',
+          lat: '',
+          lng: '',
           link: '',
           start: '',
           end: '',
-          description: ''
+          promoter: '',
+          description: '',
+          category: ''
         });
         navigate('/');
       })
@@ -114,6 +123,27 @@ function CreateEvent(props) {
               </div>
 
               <div className='form-group'>
+                <label htmlFor='promoter'>Promoter</label>
+                <input
+                  type='text'
+                  placeholder='Promoter for the event'
+                  name='promoter'
+                  className='form-control'
+                  value={event.promoter}
+                  onChange={onChange}
+                />
+              </div>
+
+              <div className='form-group'>
+                <label htmlFor='category'>Category</label>
+                <select onChange={e => setCategory(e.target.value)}>
+                  {categories && categories.map((category, i) => 
+                    <option value={category} key={i}>{category}</option>
+                  )}
+                </select>
+              </div>
+
+              <div className='form-group'>
                 <label htmlFor='description'>Description</label>
                 <input
                   type='text'
@@ -121,6 +151,30 @@ function CreateEvent(props) {
                   name='description'
                   className='form-control'
                   value={event.description}
+                  onChange={onChange}
+                />
+              </div>
+
+              <div className='form-group'>
+                <label htmlFor='lat'>Latitude</label>
+                <input
+                  type='text'
+                  placeholder='Latitude'
+                  name='lat'
+                  className='form-control'
+                  value={event.lat}
+                  onChange={onChange}
+                />
+              </div>
+
+              <div className='form-group'>
+                <label htmlFor='lng'>Longitude</label>
+                <input
+                  type='text'
+                  placeholder='Longitude'
+                  name='lng'
+                  className='form-control'
+                  value={event.lng}
                   onChange={onChange}
                 />
               </div>

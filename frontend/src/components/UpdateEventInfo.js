@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { url } from './constants'; 
+import { url, categories } from './constants'; 
 
 function UpdateEventInfo(props) {
+  const [category, setCategory] = useState('Cycling');
   const [event, setEvent] = useState({
     name: '',
     location: '',
+    lat: '',
+    lng: '',
     link: '',
     start: '',
     end: '',
+    promoter: '',
     description: '',
+    category: ''
   });
 
   const { id } = useParams();
@@ -22,10 +27,14 @@ function UpdateEventInfo(props) {
         setEvent({
           name: res.data.name,
           location: res.data.location,
+          lat: res.data.lat,
+          lng: res.data.lng,
           link: res.data.link,
           start: res.data.start,
           end: res.data.end,
-          description: res.data.description
+          promoter: res.data.promoter,
+          description: res.data.description,
+          category: res.data.category
         });
       })
       .catch(err => {
@@ -43,11 +52,17 @@ function UpdateEventInfo(props) {
     const data = {
       name: event.name,
       location: event.location,
+      lat: event.lat,
+      lng: event.lng,
       link: event.link,
       start: event.start,
       end: event.end,
-      description: event.description
+      promoter: event.promoter,
+      description: event.description,
+      category: category
     };
+
+    console.log(data);
 
     axios.put(`${url}/${id}`, data)
       .then(res => {
@@ -98,7 +113,7 @@ function UpdateEventInfo(props) {
                 className='form-control'
                 value={event.location}
                 onChange={onChange}
-              />
+                />
             </div>
             <br />
 
@@ -142,6 +157,29 @@ function UpdateEventInfo(props) {
             <br />
 
             <div className='form-group'>
+              <label htmlFor='promoter'>Promoter</label>
+              <input
+                type='text'
+                placeholder='Promoter for the event'
+                name='promoter'
+                className='form-control'
+                value={event.promoter}
+                onChange={onChange}
+              />
+            </div>
+            <br />
+
+            <div className='form-group'>
+              <label htmlFor='category'>Category</label>
+              <select onChange={e => setCategory(e.target.value)}>
+                {categories && categories.map((category, i) => 
+                  <option value={category} key={i}>{category}</option>
+                )}
+              </select>
+            </div>
+            <br />
+
+            <div className='form-group'>
               <label htmlFor='description'>Description</label>
               <textarea
                 type='text'
@@ -149,6 +187,32 @@ function UpdateEventInfo(props) {
                 name='description'
                 className='form-control'
                 value={event.description}
+                onChange={onChange}
+              />
+            </div>
+            <br />
+
+            <div className='form-group'>
+              <label htmlFor='lat'>Latitude</label>
+              <input
+                type='text'
+                placeholder='Latitude'
+                name='lat'
+                className='form-control'
+                value={event.lat}
+                onChange={onChange}
+              />
+            </div>
+            <br />
+
+            <div className='form-group'>
+              <label htmlFor='lng'>Longitude</label>
+              <input
+                type='text'
+                placeholder='Longitude'
+                name='lng'
+                className='form-control'
+                value={event.lng}
                 onChange={onChange}
               />
             </div>
