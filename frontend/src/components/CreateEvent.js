@@ -57,7 +57,7 @@ function CreateEvent(props) {
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Add Event</h1>
+            <h1 className='display-4 text-center'>Register Event</h1>
             <p className='lead text-center'>Create New Event</p>
 
             <form noValidate onSubmit={onSubmit}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import Paper from '@mui/material/Paper';
 import { Icon } from '@iconify/react';
 import locationIcon from '@iconify/icons-mdi/map-marker';
 import { api_key, default_location } from './constants';
@@ -7,7 +8,7 @@ import './Map.css';
 
 function Map({ events, zoomLevel }) {
   const location = events.length == 0 ?
-   default_location : {
+    default_location : {
     address: events[0].location,
     lat: events[0].lat,
     lng: events[0].lng,
@@ -36,11 +37,9 @@ function Map({ events, zoomLevel }) {
 
 function LocationPin({ event }) {
   return (
-    <div>
-      <div className="pin">
-        <Icon icon={locationIcon} className="pin-icon" />
-        <p className="pin-text">{event.name}</p>
-      </div>
+    <div className="pin">
+      <Icon icon={locationIcon} className="pin-icon" />
+      <Paper elevation={3} stlye={{'background-color': '#f0f8ff'}}><p className="pin-text">{event.name}</p></Paper>
     </div>
   );
 }

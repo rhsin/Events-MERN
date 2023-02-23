@@ -97,67 +97,6 @@ function ShowEventList() {
         </Grid>
       </Grid>
     </Box>
-
-    
-    // <div className='ShowEventList'>
-    //   <div className='container'>
-    //     <div className='row'>
-    //       <div className='col-md-12'>
-    //         <br />
-    //         <h2 className='display-4 text-center'>{category} Events</h2>
-    //       </div>
-
-    //       <div className='col-md-11'>
-    //         <Box>
-    //           <FormControl>
-    //             <InputLabel id='select-category'>Category</InputLabel>
-    //             <Select 
-    //               style={{minWidth: 120}}
-    //               id="select-category" 
-    //               label='Category'
-    //               onChange={e => setCategory(e.target.value)}
-    //             >
-    //               {categories && categories.map((category, i) => 
-    //                 <MenuItem value={category} key={i}>{category}</MenuItem>
-    //               )}
-    //             </Select>
-    //           </FormControl>
-              
-    //           <FormControl>
-    //             <InputLabel id='select-radius'>Radius</InputLabel>
-    //               <Select 
-    //                 style={{minWidth: 120}}
-    //                 id="select-radius" 
-    //                 label='Radius'
-    //                 onChange={e => console.log(e.target.value)}
-    //               >
-    //                 <MenuItem value={16000}>10 miles</MenuItem>
-    //                 <MenuItem value={32000}>20 miles</MenuItem>
-    //               </Select>
-    //           </FormControl>
-              
-    //           <Link
-    //             to='/create-event'
-    //             className='btn float-right'
-    //           >
-    //             Register New Event
-    //           </Link>
-    //         </Box>
-
-    //         <hr />
-    //       </div>
-    //     </div>
-    //     <div className="row">
-    //       <div className="col-md-4">
-    //         <div className='list'>{eventList}</div>
-    //       </div>
-
-    //       <div className="col-md-8">
-    //         <Map events={events} zoomLevel={6} />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 

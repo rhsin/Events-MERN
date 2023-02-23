@@ -30,6 +30,12 @@ const EventSchema = new mongoose.Schema({
   description: {
     type: String
   },
+  email: {
+    type: String
+  },
+  thumbnail: {
+    type: String
+  },
   category: {
     type: String
   }
