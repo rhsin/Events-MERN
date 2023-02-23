@@ -2,10 +2,17 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Icon } from '@iconify/react';
 import locationIcon from '@iconify/icons-mdi/map-marker';
-import { api_key, location } from './constants';
+import { api_key, default_location } from './constants';
 import './Map.css';
 
 function Map({ events, zoomLevel }) {
+  const location = events.length == 0 ?
+   default_location : {
+    address: events[0].location,
+    lat: events[0].lat,
+    lng: events[0].lng,
+  };
+
   return (
     <div className="map">
       <div className="google-map">

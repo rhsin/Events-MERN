@@ -18,10 +18,10 @@ function EventCard(props) {
           <Link to={`/show-event/${event._id}`}>{event.name}</Link>
         </h2>
         <p>{event.location}</p>
-        <p>{event.link}</p>
-        <p>{moment(event.start).format('MMMM Do YYYY, h:mm a')}</p>
-        <p>{moment(event.end).format('MMMM Do YYYY, h:mm a')}</p>
-        <p>{event.description}</p>
+        <p><a href={event.link}>{event.link}</a></p>
+        <p>{moment(event.start).format('MMMM Do, YYYY')}</p>
+        {/* <p>{moment(event.end).format('MMMM Do, YYYY')}</p> */}
+        {/* <p>{event.description}</p> */}
       </div>
     </div>
   );

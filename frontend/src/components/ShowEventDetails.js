@@ -48,11 +48,11 @@ function ShowEventDetails(props) {
           </tr>
           <tr>
             <td>Start</td>
-            <td>{moment(event.start).format('MMMM Do YYYY, h:mm a')}</td>
+            <td>{moment(event.start).format('MMMM Do, YYYY')}</td>
           </tr>
           <tr>
             <td>End</td>
-            <td>{moment(event.end).format('MMMM Do YYYY, h:mm a')}</td>
+            <td>{moment(event.end).format('MMMM Do, YYYY')}</td>
           </tr>
           <tr>
             <td>Promoter</td>

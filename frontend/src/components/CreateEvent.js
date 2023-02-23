@@ -136,7 +136,11 @@ function CreateEvent(props) {
 
               <div className='form-group'>
                 <label htmlFor='category'>Category</label>
-                <select onChange={e => setCategory(e.target.value)}>
+                <select 
+                  class="form-select"
+                  aria-label="Select Category" 
+                  onChange={e => setCategory(e.target.value)}
+                >
                   {categories && categories.map((category, i) => 
                     <option value={category} key={i}>{category}</option>
                   )}
