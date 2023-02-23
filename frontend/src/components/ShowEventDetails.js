@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import Container from '@mui/material/Container';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -77,52 +77,40 @@ function ShowEventDetails(props) {
             <TableCell>Category</TableCell>
             <TableCell>{event.category}</TableCell>
           </TableRow>
-          {/* <TableRow>
-            <TableCell>Latitude</TableCell>
-            <TableCell>{event.lat}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Longitude</TableCell>
-            <TableCell>{event.lng}</TableCell>
-          </TableRow> */}
         </TableBody>
       </Table>
     </Paper>
   );
 
   return (
-    <div className='ShowEventDetails'>
-      <div className='container'>
-        <div className='col-md-10 m-auto'>
-          <Card>
-            <CardMedia
-              sx={{ height: 300 }}
-              image={event.thumbnail}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h4" component="div">
-                {event.name}
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                {eventList}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">
-                <Link
-                  to={`/edit-event/${event._id}`}
-                >
-                  Edit Event
-                </Link>
-              </Button>
-              <Button size="small">
-                <Link to='/'>Back To Map</Link>
-              </Button>
-            </CardActions>
-          </Card>
-        </div>
-      </div>
-    </div>
+    <Container maxWidth='md'>
+      <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
+        <CardMedia
+          sx={{ height: 320 }}
+          image={event.thumbnail}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h4" component="div">
+            {event.name}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            {eventList}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">
+            <Link
+              to={`/edit-event/${event._id}`}
+            >
+              Edit Event
+            </Link>
+          </Button>
+          <Button size="small">
+            <Link to='/'>Back To Map</Link>
+          </Button>
+        </CardActions>
+      </Paper>
+    </Container>
   );
 }
 

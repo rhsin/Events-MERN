@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Container from '@mui/material/Container';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from "@mui/material/Select";
+import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import { url, categories } from './constants'; 
 
@@ -47,19 +57,12 @@ function CreateEvent(props) {
   };
 
   return (
-    <div className='CreateEvent'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-8 m-auto'>
+    <Container maxWidth='md'>
+      <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
+        <CardContent>     
+          <Typography variant="body1" color="text.secondary">
+            <h2 className='display-4 text-center'>Register Event</h2>
             <br />
-            <Link to='/' className='btn float-left'>
-              Show Event List
-            </Link>
-          </div>
-          <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Register Event</h1>
-            <p className='lead text-center'>Create New Event</p>
-
             <form noValidate onSubmit={onSubmit}>
               <div className='form-group'>
                 <label htmlFor='name'>Name</label>
@@ -73,6 +76,22 @@ function CreateEvent(props) {
                 />
               </div>
               <br />
+              
+              <div className='form-group'>
+                <FormControl size='small'>
+                  <InputLabel id='select-category'>Category</InputLabel>
+                  <Select 
+                    style={{minWidth: 120}}
+                    id="select-category" 
+                    label='Category'
+                    onChange={e => setCategory(e.target.value)}
+                  >
+                    {categories && categories.map((category, i) => 
+                      <MenuItem value={category} key={i}>{category}</MenuItem>
+                    )}
+                  </Select>
+                </FormControl>
+              </div>
 
               <div className='form-group'>
                 <label htmlFor='location'>Location</label>
@@ -135,21 +154,8 @@ function CreateEvent(props) {
               </div>
 
               <div className='form-group'>
-                <label htmlFor='category'>Category</label>
-                <select 
-                  class="form-select"
-                  aria-label="Select Category" 
-                  onChange={e => setCategory(e.target.value)}
-                >
-                  {categories && categories.map((category, i) => 
-                    <option value={category} key={i}>{category}</option>
-                  )}
-                </select>
-              </div>
-
-              <div className='form-group'>
                 <label htmlFor='description'>Description</label>
-                <input
+                <textarea
                   type='text'
                   placeholder='Describe this event'
                   name='description'
@@ -158,39 +164,20 @@ function CreateEvent(props) {
                   onChange={onChange}
                 />
               </div>
-
-              <div className='form-group'>
-                <label htmlFor='lat'>Latitude</label>
-                <input
-                  type='text'
-                  placeholder='Latitude'
-                  name='lat'
-                  className='form-control'
-                  value={event.lat}
-                  onChange={onChange}
-                />
-              </div>
-
-              <div className='form-group'>
-                <label htmlFor='lng'>Longitude</label>
-                <input
-                  type='text'
-                  placeholder='Longitude'
-                  name='lng'
-                  className='form-control'
-                  value={event.lng}
-                  onChange={onChange}
-                />
-              </div>
               <input
                 type='submit'
                 className='btn btn-block mt-4'
               />
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="md">
+            <Link to='/'>Back To Map</Link>
+          </Button>
+        </CardActions>
+      </Paper>
+    </Container>
   );
 }
 

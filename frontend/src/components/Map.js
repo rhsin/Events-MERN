@@ -39,7 +39,9 @@ function LocationPin({ event }) {
   return (
     <div className="pin">
       <Icon icon={locationIcon} className="pin-icon" />
-      <Paper elevation={3} stlye={{'background-color': '#f0f8ff'}}><p className="pin-text">{event.name}</p></Paper>
+      <Paper elevation={3} stlye={{'background-color': '#f0f8ff'}}>
+        <p className="pin-text">{event.name}</p>
+      </Paper>
     </div>
   );
 }

@@ -43,43 +43,48 @@ function ShowEventList() {
           </div>
 
           <Box sx={{ flexGrow: 1 }}>
-            <Link
-              to='/create-event'
-              className='btn float-left'
-            >
-              Register New Event
-            </Link>
             <Box
               display="flex"
-              justifyContent="flex-end"
+              justifyContent="space-between"
               alignItems="flex-end"
             >
-              <FormControl size='small'>
-                <InputLabel id='select-category'>Category</InputLabel>
-                <Select 
-                  style={{minWidth: 120}}
-                  id="select-category" 
-                  label='Category'
-                  onChange={e => setCategory(e.target.value)}
+              <Button size="small">
+                <Link
+                  to='/create-event'
+                  className='btn'
                 >
-                  {categories && categories.map((category, i) => 
-                    <MenuItem value={category} key={i}>{category}</MenuItem>
-                  )}
-                </Select>
-              </FormControl>
+                  Register New Event
+                </Link>
+              </Button>
               
-              <FormControl size='small'>
-                <InputLabel id='select-radius'>Radius</InputLabel>
+              <Box>
+                <FormControl size='small'>
+                  <InputLabel id='select-category'>Category</InputLabel>
                   <Select 
                     style={{minWidth: 120}}
-                    id="select-radius" 
-                    label='Radius'
-                    onChange={e => console.log(e.target.value)}
+                    id="select-category" 
+                    label='Category'
+                    onChange={e => setCategory(e.target.value)}
                   >
-                    <MenuItem value={16000}>10 miles</MenuItem>
-                    <MenuItem value={32000}>20 miles</MenuItem>
+                    {categories && categories.map((category, i) => 
+                      <MenuItem value={category} key={i}>{category}</MenuItem>
+                    )}
                   </Select>
-              </FormControl>
+                </FormControl>
+                
+                <FormControl size='small'>
+                  <InputLabel id='select-radius'>Radius</InputLabel>
+                    <Select 
+                      style={{minWidth: 120}}
+                      id="select-radius" 
+                      label='Radius'
+                      onChange={e => console.log(e.target.value)}
+                    >
+                      <MenuItem value={32000}>20 miles</MenuItem>
+                      <MenuItem value={80000}>50 miles</MenuItem>
+                    </Select>
+                </FormControl>
+              </Box>
             </Box>
           </Box>
         </Grid>
