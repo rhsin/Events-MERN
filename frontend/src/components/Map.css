@@ -18,12 +18,18 @@
   color: var(--main-blue);
 }
 
-.pin-icon {
-  font-size: 4rem;
+.pin-label {
+  border-radius: 2em;
+  margin-left: .8em;
+  color: red;
+  padding: 3px;
+  
 }
 
 .pin-text {
   font-size: 1.3em;
+  color: rgb(146, 57, 57);
+  padding: 4px;
 }
 
 @media screen and (min-width: 799px) {
@@ -37,7 +43,7 @@
   }
 
   .pin {
-    width: 8vw;
+    width: fit-content;
   }
 
   .pin-icon {

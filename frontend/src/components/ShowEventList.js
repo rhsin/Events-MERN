@@ -64,7 +64,7 @@ function ShowEventList() {
     }
   };
 
-  const mappedEventList = filteredEvents.length == 0 ? events.slice(0, 5).map((event, k) => <EventCard event={event} key={k} />) : 
+  const mappedEventList = filteredEvents.length == 0 ? events.slice(1, 5).map((event, k) => <EventCard event={event} key={k} />) : 
     mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
 
   const eventList = category && category != 'All' ? 

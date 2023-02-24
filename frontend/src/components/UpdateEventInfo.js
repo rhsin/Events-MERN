@@ -109,6 +109,7 @@ function UpdateEventInfo(props) {
                     style={{minWidth: 120}}
                     id="select-category" 
                     label='Category'
+                    defaultValue='Cycling'
                     onChange={e => setCategory(e.target.value)}
                   >
                     {categories && categories.map((category, i) => 
