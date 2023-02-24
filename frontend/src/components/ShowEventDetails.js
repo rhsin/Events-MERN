@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -19,8 +19,7 @@ function ShowEventDetails(props) {
   const [event, setEvent] = useState({});
 
   const { id } = useParams();
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
     axios.get(`${url}/${id}`)
       .then(res => {
@@ -106,6 +105,8 @@ function ShowEventDetails(props) {
 
 export default ShowEventDetails;
 
+
+// const navigate = useNavigate();
 
 // const onDeleteClick = (id) => {
 //   axios.delete(`${url}/${id}`)

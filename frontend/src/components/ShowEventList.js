@@ -59,8 +59,8 @@ function ShowEventList() {
     }
   };
 
-  const mappedEventList = filteredEvents.length == 0 ? events.slice(1, 5)
-    .map((event, k) => <EventCard event={event} key={k} />) : 
+  const mappedEventList = filteredEvents.length === 0 ? 
+    events.map((event, k) => <EventCard event={event} key={k} />) : 
       mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
 
   return (
