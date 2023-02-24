@@ -19,6 +19,7 @@ function ShowEventList() {
   const [category, setCategory] = useState('Cycling');
   const [region, setRegion] = useState('TX');
   const [center, setCenter] = useState({ lat: null, lng: null });
+  // const [updatedCenter, setUpdatedCenter] = useState({ lat: null, lng: null });
   const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
   const [swBounds, setSwBounds] = useState({ lat: null, lng: null });
   const [mapref, setMapRef] = useState(null);
@@ -38,9 +39,14 @@ function ShowEventList() {
     setCenter(newCenter);
   }, [region]);
 
-  const mappedEvents = events.filter(event => neBounds.lat > event.lat && event.lat > swBounds.lat &&
-    neBounds.lng > event.lng && event.lat > swBounds.lng)
-      .sort((a, b) => a.lat - b.lat);
+  // useEffect(() => {
+  //   console.log('CENTER: ' + updatedCenter);
+  // }, [updatedCenter]);
+
+  const mappedEvents = events.filter(event => 
+    (neBounds.lat - .1) > event.lat && event.lat > (swBounds.lat + .1) &&
+    (neBounds.lng - .1) > event.lng && event.lng > (swBounds.lng + .1))
+      .sort((a, b) => b.lat - a.lat);
 
   const handleOnLoad = (map) => {
     setMapRef(map);
@@ -53,6 +59,7 @@ function ShowEventList() {
   
       setNeBounds({ lat: ne.lat(), lng: ne.lng() });
       setSwBounds({ lat: sw.lat(), lng: sw.lng() });
+      // setUpdatedCenter(mapref.getCenter());
 
       setFilteredEvents(mappedEvents);
       console.log(mappedEvents);
@@ -62,6 +69,8 @@ function ShowEventList() {
   const mappedEventList = filteredEvents.length === 0 ? 
     events.map((event, k) => <EventCard event={event} key={k} />) : 
       mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
+
+  const defaultCenter = center ? center : default_location;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -148,7 +157,7 @@ function ShowEventList() {
         <Grid item sm={8.5}>
           <Map
             events={events}
-            center={center ? center : default_location}
+            center={defaultCenter}
             zoomLevel={7} 
             handleOnLoad={map => handleOnLoad(map)}
             getMapBounds={getMapBounds}

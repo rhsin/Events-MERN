@@ -27,3 +27,12 @@ export function findCenter(region) {
       return { lat: 29.953824, lng: -97.154178 };
   }
 }
+
+export function sortDistanceCenter(point, array) {
+  const sortedEvents = array.sort((a, b) =>
+    (a.x - point.x) * (a.y - point.y) -
+    (b.x - point.x) * (b.y - point.y)
+  );
+
+  return sortedEvents;
+}
