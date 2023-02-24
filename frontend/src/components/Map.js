@@ -84,7 +84,7 @@ function LocationPin({ event }) {
             <Paper sx={{ maxWidth: 340 }} elevation={2}>
               <CardMedia
                 component="img"
-                height="140"
+                // height="140"
                 image={event.thumbnail}
               />
               <CardContent>
