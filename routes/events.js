@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 });
 
 // @route POST events
-// @description add/save event
+// @description Add/save event
 router.post('/', (req, res) => {
   Event.create(req.body)
     .then(event => res.json({ msg: 'Event added successfully' }))

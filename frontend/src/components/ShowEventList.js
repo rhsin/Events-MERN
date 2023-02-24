@@ -16,6 +16,9 @@ import { url, categories } from './constants';
 function ShowEventList() {
   const [events, setEvents] = useState([]);
   const [category, setCategory] = useState('All');
+  const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
+  const [swBounds, setSwBounds] = useState({ lat: null, lng: null });
+  const [mapref, setMapRef] = useState(null);
 
   useEffect(() => {
     axios.get(url)
@@ -26,6 +29,31 @@ function ShowEventList() {
         console.log(err.message);
       });
   }, []);
+
+  const handleOnLoad = (map) => {
+    setMapRef(map);
+  };
+
+  const getMapBounds = () => {
+    if (mapref) {
+      const ne = mapref.getBounds().getNorthEast();
+      const sw = mapref.getBounds().getSouthWest();
+  
+      console.log(ne.lat() + "," + ne.lng());
+      console.log(sw.lat() + "," + sw.lng());
+  
+      setNeBounds({ lat: ne.lat(), lng: ne.lng() });
+      setSwBounds({ lat: sw.lat(), lng: sw.lng() });
+
+      console.log(events.filter(event => neBounds.lat > event.lat > swBounds.lat &&
+        neBounds.lng > event.lng > swBounds.lng));
+    }
+  };
+
+  const eventsOnMap = () => {
+    events.filter(event => neBounds.lat > event.lat > swBounds.lat &&
+      neBounds.lng > event.lng > swBounds.lng);
+  };
 
   const eventList = category && category != 'All' ? 
     events.filter(event => event.category == category)
@@ -56,7 +84,6 @@ function ShowEventList() {
                   Register New Event
                 </Link>
               </Button>
-              
               <Box>
                 <FormControl size='small'>
                   <InputLabel id='select-category'>Category</InputLabel>
@@ -98,7 +125,12 @@ function ShowEventList() {
         </Grid>
         
         <Grid item sm={8.5}>
-          <Map events={events} zoomLevel={6} />
+          <Map
+            events={events}
+            zoomLevel={7} 
+            handleOnLoad={map => handleOnLoad(map)}
+            getMapBounds={getMapBounds}
+          />
         </Grid>
       </Grid>
     </Box>

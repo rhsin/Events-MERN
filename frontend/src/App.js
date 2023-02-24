@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { createTheme, ThemeProvider, Typography } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ShowEventList from './components/ShowEventList';
 import CreateEvent from './components/CreateEvent';
 import ShowEventDetails from './components/ShowEventDetails';
