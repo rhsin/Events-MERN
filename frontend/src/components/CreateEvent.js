@@ -172,7 +172,7 @@ function CreateEvent(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="md">
+          <Button size="large">
             <Link to='/'>Back To Map</Link>
           </Button>
         </CardActions>

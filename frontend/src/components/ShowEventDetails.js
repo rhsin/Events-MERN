@@ -98,14 +98,14 @@ function ShowEventDetails(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">
+          <Button size="large" color='success'>
             <Link
               to={`/edit-event/${event._id}`}
             >
               Edit Event
             </Link>
           </Button>
-          <Button size="small">
+          <Button size="large">
             <Link to='/'>Back To Map</Link>
           </Button>
         </CardActions>

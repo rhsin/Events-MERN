@@ -1,25 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GoogleMap, LoadScript, OverlayView } from '@react-google-maps/api';
 import Paper from '@mui/material/Paper';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
-import { api_key, default_location } from './constants';
+import { api_key } from './constants';
 import './Map.css';
 
-function Map({ events, zoomLevel, handleOnLoad, getMapBounds }) {
-
-  // useEffect(() => {
-  //   if (mapref) {
-  //     getMapBounds(mapref);
-  //   }
-  // }, [mapref]);
-
-  // const center = events.length == 0 ?
-  //   default_location : {
-  //   address: events[0].location,
-  //   lat: events[0].lat,
-  //   lng: events[0].lng,
-  // };
-
+function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
   return (
     <div className="map">
       <div className="google-map">
@@ -27,14 +14,10 @@ function Map({ events, zoomLevel, handleOnLoad, getMapBounds }) {
           googleMapsApiKey={api_key}
         >
           <GoogleMap
-            // ref={onMapMounted}
-            // onZoomChanged={handleMapChanged}
-            // onDragEnd={handleMapChanged}
-            // onBoundsChanged={handleMapFullyLoaded}
             onLoad={handleOnLoad}
-            onCenterChanged={getMapBounds}
+            onBoundsChanged={getMapBounds}
             mapContainerStyle={{width: '100%', height: '100%'}}
-            center={default_location}
+            center={center}
             zoom={zoomLevel}
           >
             {events && events.map((event, i) => 
@@ -62,7 +45,7 @@ function LocationPin({ event }) {
     <div className="pin">
       <DirectionsBikeIcon color='error' fontSize='large' />
       <Paper elevation={3} stlye={{'background-color': '#f0f8ff'}}>
-        <p className="pin-text">{event.name}</p>
+        <Link className='pin-text' to={`/show-event/${event._id}`}>{event.name}</Link>
       </Paper>
     </div>
   );

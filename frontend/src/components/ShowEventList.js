@@ -11,11 +11,14 @@ import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import EventCard from './EventCard';
 import Map from './Map';
-import { url, categories } from './constants'; 
+import { url, categories, regions, findCenter, default_location } from './constants'; 
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
-  const [category, setCategory] = useState('All');
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [category, setCategory] = useState('Cycling');
+  const [region, setRegion] = useState('TX');
+  const [center, setCenter] = useState({ lat: null, lng: null });
   const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
   const [swBounds, setSwBounds] = useState({ lat: null, lng: null });
   const [mapref, setMapRef] = useState(null);
@@ -29,6 +32,17 @@ function ShowEventList() {
         console.log(err.message);
       });
   }, []);
+
+  useEffect(() => {
+    const newCenter = findCenter(region);
+    setCenter(newCenter);
+    
+    console.log(center);
+  }, [region]);
+
+  const mappedEvents = events.filter(event => neBounds.lat > event.lat && event.lat > swBounds.lat &&
+    neBounds.lng > event.lng && event.lat > swBounds.lng)
+      .sort((a, b) => a.lat - b.lat);
 
   const handleOnLoad = (map) => {
     setMapRef(map);
@@ -45,20 +59,18 @@ function ShowEventList() {
       setNeBounds({ lat: ne.lat(), lng: ne.lng() });
       setSwBounds({ lat: sw.lat(), lng: sw.lng() });
 
-      console.log(events.filter(event => neBounds.lat > event.lat > swBounds.lat &&
-        neBounds.lng > event.lng > swBounds.lng));
+      setFilteredEvents(mappedEvents);
+      console.log(mappedEvents);
     }
   };
 
-  const eventsOnMap = () => {
-    events.filter(event => neBounds.lat > event.lat > swBounds.lat &&
-      neBounds.lng > event.lng > swBounds.lng);
-  };
+  const mappedEventList = filteredEvents.length == 0 ? events.slice(0, 5).map((event, k) => <EventCard event={event} key={k} />) : 
+    mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
 
   const eventList = category && category != 'All' ? 
     events.filter(event => event.category == category)
       .map((event, k) => <EventCard event={event} key={k} />) :
-         events.map((event, k) => <EventCard event={event} key={k} />);
+        events.map((event, k) => <EventCard event={event} key={k} />);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -76,25 +88,44 @@ function ShowEventList() {
               justifyContent="space-between"
               alignItems="flex-end"
             >
-              <Button size="small">
-                <Link
-                  to='/create-event'
-                  className='btn'
-                >
-                  Register New Event
-                </Link>
-              </Button>
               <Box>
-                <FormControl size='small'>
+              <FormControl size='small'>
                   <InputLabel id='select-category'>Category</InputLabel>
                   <Select 
                     style={{minWidth: 120}}
                     id="select-category" 
                     label='Category'
+                    defaultValue='Cycling'
                     onChange={e => setCategory(e.target.value)}
                   >
                     {categories && categories.map((category, i) => 
                       <MenuItem value={category} key={i}>{category}</MenuItem>
+                    )}
+                  </Select>
+                </FormControl>
+
+                <Button size="small">
+                <Link
+                  to='/create-event'
+                  className='btn ml-2'
+                >
+                  Register New Event
+                </Link>
+              </Button>
+              </Box>
+
+              <Box>
+                <FormControl size='small'>
+                  <InputLabel id='select-region'>Region</InputLabel>
+                  <Select 
+                    style={{minWidth: 120}}
+                    id="select-region" 
+                    label='Region'
+                    defaultValue='TX'
+                    onChange={e => setRegion(e.target.value)}
+                  >
+                    {regions && regions.map((region, i) => 
+                      <MenuItem value={region} key={i}>{region}</MenuItem>
                     )}
                   </Select>
                 </FormControl>
@@ -120,13 +151,14 @@ function ShowEventList() {
           <List 
             style={{maxHeight: 1165, overflow: 'auto'}}
           >
-            {eventList}
+            {mappedEventList}
           </List>
         </Grid>
         
         <Grid item sm={8.5}>
           <Map
             events={events}
+            center={center ? center : default_location}
             zoomLevel={7} 
             handleOnLoad={map => handleOnLoad(map)}
             getMapBounds={getMapBounds}
