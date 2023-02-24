@@ -1,5 +1,7 @@
 
-export const url = 'http://localhost:8080/events';
+// export const url = 'http://localhost:8080/events';
+
+export const url = 'https://cycling-events-api.onrender.com/events';
 
 export const categories = ['Cycling', 'Running', 'All'];
 
