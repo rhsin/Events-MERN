@@ -89,7 +89,7 @@ function LocationPin({ event }) {
               />
               <CardContent>
                 <Typography gutterBottom variant="h7" component="div">
-                  <Link to={`/show-event/${event._id}`}>
+                  <Link to={`/show-event/${event._id}`} className='pin-link'>
                     {event.name}
                   </Link>
                 </Typography>

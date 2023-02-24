@@ -31,16 +31,6 @@ function ShowEventDetails(props) {
       });
   }, [id]);
 
-  const onDeleteClick = (id) => {
-    axios.delete(`${url}/${id}`)
-      .then(res => {
-        navigate('/');
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  };
-
   const eventList = (
     <Paper elevation={1}>
       <Table>
@@ -115,3 +105,14 @@ function ShowEventDetails(props) {
 }
 
 export default ShowEventDetails;
+
+
+// const onDeleteClick = (id) => {
+//   axios.delete(`${url}/${id}`)
+//     .then(res => {
+//       navigate('/');
+//     })
+//     .catch(err => {
+//       console.log(err.message);
+//     });
+// };

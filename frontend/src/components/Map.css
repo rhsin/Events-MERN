@@ -26,6 +26,10 @@
   
 }
 
+.pin-link {
+  color: rgb(146, 57, 57);;
+}
+
 .pin-text {
   font-size: 1.3em;
   color: rgb(146, 57, 57);

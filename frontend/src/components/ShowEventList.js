@@ -36,8 +36,6 @@ function ShowEventList() {
   useEffect(() => {
     const newCenter = findCenter(region);
     setCenter(newCenter);
-    
-    console.log(center);
   }, [region]);
 
   const mappedEvents = events.filter(event => neBounds.lat > event.lat && event.lat > swBounds.lat &&
@@ -53,9 +51,6 @@ function ShowEventList() {
       const ne = mapref.getBounds().getNorthEast();
       const sw = mapref.getBounds().getSouthWest();
   
-      console.log(ne.lat() + "," + ne.lng());
-      console.log(sw.lat() + "," + sw.lng());
-  
       setNeBounds({ lat: ne.lat(), lng: ne.lng() });
       setSwBounds({ lat: sw.lat(), lng: sw.lng() });
 
@@ -64,13 +59,9 @@ function ShowEventList() {
     }
   };
 
-  const mappedEventList = filteredEvents.length == 0 ? events.slice(1, 5).map((event, k) => <EventCard event={event} key={k} />) : 
-    mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
-
-  const eventList = category && category != 'All' ? 
-    events.filter(event => event.category == category)
-      .map((event, k) => <EventCard event={event} key={k} />) :
-        events.map((event, k) => <EventCard event={event} key={k} />);
+  const mappedEventList = filteredEvents.length == 0 ? events.slice(1, 5)
+    .map((event, k) => <EventCard event={event} key={k} />) : 
+      mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -81,7 +72,6 @@ function ShowEventList() {
             <h2 className='display-4 text-center'>{category} Events</h2>
             <br />
           </div>
-
           <Box sx={{ flexGrow: 1 }}>
             <Box
               display="flex"
@@ -170,3 +160,9 @@ function ShowEventList() {
 }
 
 export default ShowEventList;
+
+
+// const eventList = category && category != 'All' ? 
+//   events.filter(event => event.category == category)
+//     .map((event, k) => <EventCard event={event} key={k} />) :
+//       events.map((event, k) => <EventCard event={event} key={k} />);
