@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from "@mui/material/Select";
 import MenuItem from '@mui/material/MenuItem';
+import Slider from '@mui/material/Slider';
 import axios from 'axios';
 import EventCard from './EventCard';
 import Map from './Map';
@@ -18,6 +19,7 @@ function ShowEventList() {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [category, setCategory] = useState('Cycling');
   const [region, setRegion] = useState('TX');
+  const [date, setDate] = useState('');
   const [center, setCenter] = useState({ lat: null, lng: null });
   // const [updatedCenter, setUpdatedCenter] = useState({ lat: null, lng: null });
   const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
@@ -72,6 +74,10 @@ function ShowEventList() {
 
   const defaultCenter = center ? center : default_location;
 
+  const handleChange = (e, newDate) => {
+    setDate(newDate);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0}>
@@ -88,7 +94,7 @@ function ShowEventList() {
               alignItems="flex-end"
             >
               <Box>
-              <FormControl size='small'>
+                <FormControl size='small'>
                   <InputLabel id='select-category'>Category</InputLabel>
                   <Select 
                     style={{minWidth: 120}}
@@ -103,6 +109,12 @@ function ShowEventList() {
                   </Select>
                 </FormControl>
 
+                <Slider
+                  sx={{ width: 200 }}
+                  // value={date}
+                  onChange={handleChange}
+                  valueLabelDisplay="auto"
+                />
                 <Button size="small">
                 <Link
                   to='/create-event'
