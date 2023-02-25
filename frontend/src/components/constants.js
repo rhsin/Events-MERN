@@ -3,7 +3,7 @@
 
 export const url = 'https://cycling-events-api.onrender.com/events';
 
-export const categories = ['Gravel', 'All Cycling'];
+export const categories = ['All Cycling', 'Gravel'];
 
 export const regions = ['TX', 'CA', 'FL'];
 

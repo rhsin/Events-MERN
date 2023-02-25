@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from "@mui/material/Select";
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import { url, categories } from './constants'; 
@@ -85,7 +85,7 @@ function UpdateEventInfo(props) {
     <Container maxWidth='md'>
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardContent>     
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant='body1' color='text.secondary'>
             <h2 className='display-4 text-center'>Edit Event</h2>
             <br />
             <form noValidate onSubmit={onSubmit}>
@@ -107,7 +107,7 @@ function UpdateEventInfo(props) {
                   <InputLabel id='select-category'>Category</InputLabel>
                   <Select 
                     style={{minWidth: 120}}
-                    id="select-category" 
+                    id='select-category' 
                     label='Category'
                     defaultValue='Cycling'
                     onChange={e => setCategory(e.target.value)}
@@ -200,7 +200,7 @@ function UpdateEventInfo(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="large">
+          <Button size='large'>
             <Link to='/'>Back To Map</Link>
           </Button>
         </CardActions>

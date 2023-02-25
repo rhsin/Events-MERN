@@ -14,8 +14,8 @@ import './Map.css';
 
 function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
   return (
-    <div className="map">
-      <div className="google-map">
+    <div className='map'>
+      <div className='google-map'>
         <LoadScript
           googleMapsApiKey={api_key}
         >
@@ -61,8 +61,16 @@ function LocationPin({ event }) {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <div className="pin">
-      <DirectionsBikeIcon color='error' fontSize='large' />
+    <div className='pin'>
+      <DirectionsBikeIcon
+        color='error'
+        fontSize='large' 
+        style={{
+          textAlign: 'center',
+          transform: 'translate(-50%, -50%)',
+          position: 'absolute'
+        }}
+      />
         <Paper elevation={3} className='pin-label'>
           <Link onClick={handleClick} className='pin-text'>
             {event.name}
@@ -83,22 +91,22 @@ function LocationPin({ event }) {
           >
             <Paper sx={{ maxWidth: 340 }} elevation={2}>
               <CardMedia
-                component="img"
-                // height="140"
+                component='img'
+                // height='140'
                 image={event.thumbnail}
               />
               <CardContent>
-                <Typography gutterBottom variant="h7" component="div">
+                <Typography gutterBottom variant='h7' component='div'>
                   <Link to={`/show-event/${event._id}`} className='pin-link'>
                     {event.name}
                   </Link>
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant='body2' color='text.secondary'>
                   {event.description}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" onClick={handleClose}>
+                <Button size='small' onClick={handleClose}>
                   Close
                 </Button>
               </CardActions>

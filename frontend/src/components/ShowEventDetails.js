@@ -79,22 +79,22 @@ function ShowEventDetails(props) {
           image={event.thumbnail}
         />
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography gutterBottom variant='h4' component='div'>
             {event.name}
           </Typography>
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant='body1' color='text.secondary'>
             {eventList}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="large" color='success'>
+          <Button size='large' color='success'>
             <Link
               to={`/edit-event/${event._id}`}
             >
               Edit Event
             </Link>
           </Button>
-          <Button size="large">
+          <Button size='large'>
             <Link to='/'>Back To Map</Link>
           </Button>
         </CardActions>
