@@ -8,18 +8,22 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from "@mui/material/Select";
 import MenuItem from '@mui/material/MenuItem';
-// import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
 import EventCard from './EventCard';
 import Map from './Map';
-import { url, categories, regions, findCenter, default_location } from './constants'; 
+import { url, categories, regions, default_location } from './constants';
+import { findCenter, addDays } from './helpers';  
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
-  const [filteredEvents, setFilteredEvents] = useState([]);
   const [category, setCategory] = useState('Cycling');
   const [region, setRegion] = useState('TX');
-  // const [date, setDate] = useState('');
+  const [date1, setDate1] = useState(addDays(Date.now(), -55));
+  const [date2, setDate2] = useState(addDays(Date.now(), 40));
   const [center, setCenter] = useState({ lat: null, lng: null });
   // const [updatedCenter, setUpdatedCenter] = useState({ lat: null, lng: null });
   const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
@@ -50,9 +54,12 @@ function ShowEventList() {
     (neBounds.lng - .1) > event.lng && event.lng > (swBounds.lng + .1))
       .sort((a, b) => b.lat - a.lat);
 
-  const handleOnLoad = (map) => {
-    setMapRef(map);
-  };
+  const dateEventsList = mappedEvents.filter(event =>
+    Date.parse(event.start) > date1 && Date.parse(event.end) < date2);
+
+  const mappedEventList = !swBounds ? 
+    mappedEvents.map((event, k) => <EventCard event={event} key={k} />) : 
+    dateEventsList.map((event, k) => <EventCard event={event} key={k} />);
 
   const getMapBounds = () => {
     if (mapref) {
@@ -63,20 +70,15 @@ function ShowEventList() {
       setSwBounds({ lat: sw.lat(), lng: sw.lng() });
       // setUpdatedCenter(mapref.getCenter());
 
-      setFilteredEvents(mappedEvents);
       console.log(mappedEvents);
     }
   };
 
-  const mappedEventList = filteredEvents.length === 0 ? 
-    events.map((event, k) => <EventCard event={event} key={k} />) : 
-      mappedEvents.map((event, k) => <EventCard event={event} key={k} />);
+  const handleOnLoad = (map) => {
+    setMapRef(map);
+  };
 
   const defaultCenter = center ? center : default_location;
-
-  // const handleChange = (e, newDate) => {
-  //   setDate(newDate);
-  // };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -86,6 +88,13 @@ function ShowEventList() {
             <br />
             <h2 className='display-4 text-center'>{category} Events</h2>
             <br />
+            <Button size="large" style={{ margin: '0em 0em .5em 0em' }}>
+              <Link
+                to='/create-event'
+              >
+                Register New Event
+              </Link>
+            </Button>
           </div>
           <Box sx={{ flexGrow: 1 }}>
             <Box
@@ -93,6 +102,34 @@ function ShowEventList() {
               justifyContent="space-between"
               alignItems="flex-end"
             >
+              <Box>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <div className='date-picker'>
+                    <DatePicker
+                      label="Begin Date"
+                      value={date1}
+                      onChange={(newValue) => {
+                        setDate1(Date.parse(newValue.$d));
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </div>
+                </LocalizationProvider>
+
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <div className='date-picker'>
+                    <DatePicker
+                      label="End Date"
+                      value={date2}
+                      onChange={(newValue) => {
+                        setDate2(Date.parse(newValue.$d));
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </div>
+                </LocalizationProvider>
+              </Box>
+
               <Box>
                 <FormControl size='small'>
                   <InputLabel id='select-category'>Category</InputLabel>
@@ -109,23 +146,6 @@ function ShowEventList() {
                   </Select>
                 </FormControl>
 
-                {/* <Slider
-                  sx={{ width: 200 }}
-                  // value={date}
-                  onChange={handleChange}
-                  valueLabelDisplay="auto"
-                /> */}
-                <Button size="small">
-                <Link
-                  to='/create-event'
-                  className='btn ml-2'
-                >
-                  Register New Event
-                </Link>
-              </Button>
-              </Box>
-
-              <Box>
                 <FormControl size='small'>
                   <InputLabel id='select-region'>Region</InputLabel>
                   <Select 
@@ -183,7 +203,3 @@ function ShowEventList() {
 export default ShowEventList;
 
 
-// const eventList = category && category != 'All' ? 
-//   events.filter(event => event.category == category)
-//     .map((event, k) => <EventCard event={event} key={k} />) :
-//       events.map((event, k) => <EventCard event={event} key={k} />);

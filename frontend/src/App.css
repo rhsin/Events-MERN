@@ -24,6 +24,13 @@ a {
   padding: 10px;
 }
 
+.date-picker {
+  display: inline-block;
+  width: 162px;
+  height: 50px;
+  margin: 1px;
+}
+
 .btn {
   background-color: rgb(48, 48, 142);
   border: none;

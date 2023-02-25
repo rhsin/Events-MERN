@@ -75,7 +75,7 @@ function ShowEventDetails(props) {
     <Container maxWidth='md'>
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardMedia
-          sx={{ height: 400 }}
+          sx={{ height: 360 }}
           image={event.thumbnail}
         />
         <CardContent>
