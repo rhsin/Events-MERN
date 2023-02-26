@@ -5229,6 +5229,13 @@ get-symbol-description@^1.0.0:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
+get-value@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/get-value/-/get-value-3.0.1.tgz#5efd2a157f1d6a516d7524e124ac52d0a39ef5a8"
+  integrity sha512-mKZj9JLQrwMBtj5wxi6MH8Z5eSKaERpAwjg43dPtlGI1ZVEgH/qC7T8/6R2OBSUA+zzHBZgICsVJaEIV2tKTDA==
+  dependencies:
+    isobject "^3.0.1"
+
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz"
@@ -5966,6 +5973,11 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+
+isobject@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+  integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
 
 istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
   version "3.2.0"
@@ -8967,6 +8979,13 @@ sockjs@^0.3.24:
     faye-websocket "^0.11.3"
     uuid "^8.3.2"
     websocket-driver "^0.7.4"
+
+sort-by-distance@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sort-by-distance/-/sort-by-distance-2.0.0.tgz#766570f6355dcea7082e21e38f35b71c3c996326"
+  integrity sha512-NpeHhOEI/oISy3kF1dcpH3/UKzLY4h4sTMEjPoyaoq7BD8p5C0K/vy89PByiwvUUqzlGL2cyAaPy+OMgLszwsw==
+  dependencies:
+    get-value "^3.0.1"
 
 source-list-map@^2.0.0, source-list-map@^2.0.1:
   version "2.0.1"

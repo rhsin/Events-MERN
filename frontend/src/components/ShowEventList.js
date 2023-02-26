@@ -18,7 +18,7 @@ import EventCard from './EventCard';
 import SearchBar from './SearchBar';
 import Map from './Map';
 import { url, categories, regions, default_location, api_key } from './constants';
-import { findCenter, addDays } from './helpers';  
+import { findCenter, addDays, sortByCenterDistance } from './helpers';  
 
 function ShowEventList() {
   const [events, setEvents] = useState([]);
@@ -28,7 +28,7 @@ function ShowEventList() {
   const [date2, setDate2] = useState(addDays(Date.now(), 40));
   const [center, setCenter] = useState({ lat: null, lng: null });
   const [zoomLevel, setZoomLevel] = useState(7);
-  // const [updatedCenter, setUpdatedCenter] = useState({ lat: null, lng: null });
+  const [updatedCenter, setUpdatedCenter] = useState({ lat: null, lng: null });
   const [keyword, setKeyword] = useState('');
   const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
   const [swBounds, setSwBounds] = useState({ lat: null, lng: null });
@@ -49,23 +49,21 @@ function ShowEventList() {
     setCenter(newCenter);
   }, [region]);
 
-  // useEffect(() => {
-  //   console.log('CENTER: ' + updatedCenter);
-  // }, [updatedCenter]);
-
   const mappedEvents = events.filter(event => 
     (neBounds.lat - .1) > event.lat && event.lat > (swBounds.lat + .1) &&
     (neBounds.lng - .1) > event.lng && event.lng > (swBounds.lng + .1))
       .sort((a, b) => b.lat - a.lat);
 
-  const dateEventsList = mappedEvents.filter(event =>
+  const sortedEventList = !updatedCenter ? mappedEvents : sortByCenterDistance(updatedCenter, mappedEvents);
+
+  const dateEventList = sortedEventList.filter(event =>
     Date.parse(event.start) > date1 && Date.parse(event.end) < date2);
 
   const mappedEventList = !swBounds ? 
     mappedEvents.map((event, k) => <EventCard event={event} key={k} />) : 
-    dateEventsList.map((event, k) => <EventCard event={event} key={k} />);
+    dateEventList.map((event, k) => <EventCard event={event} key={k} />);
     
-  const mappedMarkers = !swBounds ? mappedEvents : dateEventsList;
+  const mappedMarkers = !swBounds ? mappedEvents : dateEventList;
 
   const getMapBounds = () => {
     if (mapref) {
@@ -74,9 +72,10 @@ function ShowEventList() {
   
       setNeBounds({ lat: ne.lat(), lng: ne.lng() });
       setSwBounds({ lat: sw.lat(), lng: sw.lng() });
-      // setUpdatedCenter(mapref.getCenter());
-
-      console.log(mappedEvents);
+      setUpdatedCenter({
+        lat: mapref.getCenter().lat(),
+        lng: mapref.getCenter().lng() 
+      });
     }
   };
 
