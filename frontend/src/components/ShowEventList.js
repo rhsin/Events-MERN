@@ -64,6 +64,8 @@ function ShowEventList() {
   const mappedEventList = !swBounds ? 
     mappedEvents.map((event, k) => <EventCard event={event} key={k} />) : 
     dateEventsList.map((event, k) => <EventCard event={event} key={k} />);
+    
+  const mappedMarkers = !swBounds ? mappedEvents : dateEventsList;
 
   const getMapBounds = () => {
     if (mapref) {
@@ -198,10 +200,10 @@ function ShowEventList() {
                       style={{minWidth: 120}}
                       id='select-radius' 
                       label='Radius'
-                      onChange={e => console.log(e.target.value)}
+                      onChange={e => setZoomLevel(e.target.value)}
                     >
-                      <MenuItem value={32000}>20 miles</MenuItem>
-                      <MenuItem value={80000}>50 miles</MenuItem>
+                      <MenuItem value={12}>20 miles</MenuItem>
+                      <MenuItem value={10}>50 miles</MenuItem>
                     </Select>
                 </FormControl>
               </Box>
@@ -219,7 +221,7 @@ function ShowEventList() {
         
         <Grid item sm={8.5}>
           <Map
-            events={events}
+            events={mappedMarkers}
             center={defaultCenter}
             zoomLevel={zoomLevel} 
             handleOnLoad={map => handleOnLoad(map)}
