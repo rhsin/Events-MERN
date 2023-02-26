@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import { url, categories } from './constants'; 
 
-function UpdateEventInfo(props) {
+function UpdateEventInfo() {
   const [category, setCategory] = useState('Cycling');
   const [event, setEvent] = useState({
     name: '',
@@ -190,16 +190,13 @@ function UpdateEventInfo(props) {
                   onChange={onChange}
                 />
               </div>
-              <button
-                type='submit'
-                className='btn btn-outline-info btn-lg btn-block'
-              >
-                Update Event
-              </button>
             </form>
           </Typography>
         </CardContent>
         <CardActions>
+          <Button type='submit' size='large' color='success'>
+            Update Event
+          </Button>
           <Button size='large'>
             <Link to='/'>Back To Map</Link>
           </Button>

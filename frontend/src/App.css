@@ -3,100 +3,94 @@ h2 {
   color: rgb(26, 26, 119);
 }
 
+hr {
+  margin: 0em;
+}
+
 a {
   color:rgb(34, 34, 179);
+}
+
+.google-map {
+  width: 100%;
+  height: 100%;
+  margin-top: .25em;
+}
+
+.pin {
+  display: flex;
+  align-items: center;
+}
+
+.pin-label {
+  border-radius: 2em;
+  margin-left: 1.8em;
+  color: red;
+  padding: .25em;
+}
+
+.pin-text {
+  font-size: 1.3em;
+  color: rgb(146, 57, 57);
+  padding: .3em;
+}
+
+.pin-link {
+  color: rgb(146, 57, 57);;
+}
+
+@media screen and (min-width: 799px) {
+  .google-map {
+    height: 80vh;
+  }
+
+  .map-h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .pin {
+    width: fit-content;
+  }
+}
+
+.date-picker {
+  display: inline-block;
+  width: 10em;
+  height: 3.15em;
+  margin: .15em;
+}
+
+.event-card {
+  height: 10em;
+  padding: .65em;
+}
+
+.event-card h2 {
+  font-size: 1em;
+  font-weight: 400;
+  margin: .25em;
+}
+
+.event-card h3, p {
+  font-weight: 300;
+  margin: .4em;
 }
 
 *:focus {
   outline: none !important;
 }
 
-.test {
-  background-color: #f4f4f9;
-}
-
-.card-container {
-  width: 420px;
-  padding: 6px;
-  border: 1px solid rgba(0,0,.125);
-  margin: 0 auto;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.card-img {
-  padding: 10px;
-}
-
-.date-picker {
-  display: inline-block;
-  width: 162px;
-  height: 50px;
-  margin: 1px;
-}
-
-.btn {
-  background-color: rgb(48, 48, 142);
-  border: none;
-  color: white;
-}
-
-.btn-edit {
-  background-color: rgb(15, 72, 28);
-  border: none;
-  color: white;
-}
-
-.btn-delete {
-  background-color: rgb(106, 22, 36);
-  border: none;
-  color: white;
-}
-
-.btn:hover {
-  background-color: rgb(67, 67, 236);
-  border: none;
-  color: white;
-}
-
-.desc {
-  height: 160px;
-  padding: 10px;
-}
-
-.desc h2 {
-  font-size: 1em;
-  font-weight: 400;
-  margin: 5px;
-}
-
-.desc h3, p {
-  font-weight: 300;
-  margin: 5px;
-}
-
-.desc h3 {
-  color: #6c757d;
-  font-size: 1em;
-  /* padding: 6px; */
-}
-
-hr {
-  margin: 0px 0px 0px 0px;
-}
-
 ::-webkit-scrollbar {
-  width: 10px;
- }
-  
-::-webkit-scrollbar-button {
-  display: none;
+  width: .6em;
 }
   
- ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: transparent;
 }
   
 ::-webkit-scrollbar-thumb {
-  background: #d2d2d2;
+  background: #ebe8e8;
 }
+
+  

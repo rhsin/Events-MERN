@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GoogleMap, LoadScript, OverlayView } from '@react-google-maps/api';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -10,39 +12,41 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import { api_key } from './constants';
-import './Map.css';
 
 function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
+  const isDesktop = useMediaQuery('(min-width: 960px)');
+
+  const containerStyle = isDesktop ? { width: '100%', height: '100%' } :
+    { width: '360px', height: '400px' };
+
   return (
-    <div className='map'>
-      <div className='google-map'>
-        <LoadScript
-          googleMapsApiKey={api_key}
+    <Box className='google-map'>
+      <LoadScript
+        googleMapsApiKey={api_key}
+      >
+        <GoogleMap
+          onLoad={handleOnLoad}
+          onBoundsChanged={getMapBounds}
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={zoomLevel}
         >
-          <GoogleMap
-            onLoad={handleOnLoad}
-            onBoundsChanged={getMapBounds}
-            mapContainerStyle={{width: '100%', height: '100%'}}
-            center={center}
-            zoom={zoomLevel}
-          >
-            {events && events.map((event, i) => 
-              <OverlayView
-                position={{ lat: event.lat, lng: event.lng }}
-                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                key={i}
-              >
-                <LocationPin 
-                  event={event} 
-                  lat={event.lat}
-                  lng={event.lng} 
-                />
-              </OverlayView>
-            )}
-          </GoogleMap>
-        </LoadScript>
-      </div>
-    </div>
+          {events && events.map((event, i) => 
+            <OverlayView
+              position={{ lat: event.lat, lng: event.lng }}
+              mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              key={i}
+            >
+              <LocationPin 
+                event={event} 
+                lat={event.lat}
+                lng={event.lng} 
+              />
+            </OverlayView>
+          )}
+        </GoogleMap>
+      </LoadScript>
+    </Box>
   );
 }
 
@@ -61,7 +65,7 @@ function LocationPin({ event }) {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <div className='pin'>
+    <Box className='pin'>
       <DirectionsBikeIcon
         color='error'
         fontSize='large' 
@@ -92,7 +96,6 @@ function LocationPin({ event }) {
             <Paper sx={{ maxWidth: 340 }} elevation={2}>
               <CardMedia
                 component='img'
-                // height='140'
                 image={event.thumbnail}
               />
               <CardContent>
@@ -113,7 +116,7 @@ function LocationPin({ event }) {
             </Paper>
           </Popover>
         </Paper>
-    </div>
+    </Box>
   );
 }
 

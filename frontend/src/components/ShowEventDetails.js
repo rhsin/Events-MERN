@@ -15,7 +15,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { url } from './constants'; 
 
-function ShowEventDetails(props) {
+function ShowEventDetails() {
   const [event, setEvent] = useState({});
 
   const { id } = useParams();
@@ -106,14 +106,3 @@ function ShowEventDetails(props) {
 export default ShowEventDetails;
 
 
-// const navigate = useNavigate();
-
-// const onDeleteClick = (id) => {
-//   axios.delete(`${url}/${id}`)
-//     .then(res => {
-//       navigate('/');
-//     })
-//     .catch(err => {
-//       console.log(err.message);
-//     });
-// };

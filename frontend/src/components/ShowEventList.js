@@ -109,10 +109,10 @@ function ShowEventList() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0}>
         <Grid item sm={12}>
-          <div>
+          <Box>
             <br />
             <h2 className='display-4 text-center'>{category} Events</h2>
-          </div>
+          </Box>
           <Box sx={{ flexGrow: 1 }}>
             <Box
               display='flex'

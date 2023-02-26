@@ -11,7 +11,7 @@ function InputWithIcon({ handleChange, handleClick }) {
         <IconButton
           onClick={handleClick}
           size='small'
-          style={{ padding: '0px 6px' }}
+          style={{ padding: '0em .25em' }}
         >
           <SearchIcon />
         </IconButton>

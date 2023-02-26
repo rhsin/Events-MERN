@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import { url, categories } from './constants'; 
 
-function CreateEvent(props) {
+function CreateEvent() {
   const navigate = useNavigate();
   const [category, setCategory] = useState('Cycling');
   const [event, setEvent] = useState({
@@ -165,14 +165,13 @@ function CreateEvent(props) {
                   onChange={onChange}
                 />
               </div>
-              <input
-                type='submit'
-                className='btn btn-block mt-4'
-              />
             </form>
           </Typography>
         </CardContent>
         <CardActions>
+          <Button type='submit' size='large' color='success'>
+            Submit Event
+          </Button>
           <Button size='large'>
             <Link to='/'>Back To Map</Link>
           </Button>
