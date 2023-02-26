@@ -76,7 +76,7 @@ function ShowEventDetails() {
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardMedia
           sx={{ height: 360 }}
-          image={event.thumbnail}
+          // image={event.thumbnail}
         />
         <CardContent>
           <Typography gutterBottom variant='h4' component='div'>
