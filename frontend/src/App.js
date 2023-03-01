@@ -1,12 +1,16 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import ShowEventList from './components/ShowEventList';
+import MobileEventList from './components/mobile/MobileEventList';
 import CreateEvent from './components/CreateEvent';
 import ShowEventDetails from './components/ShowEventDetails';
 import UpdateEventInfo from './components/UpdateEventInfo';
 import './App.css';
 
 function App() {
+  const isDesktop = useMediaQuery('(min-width: 700px)');
+
   const theme = createTheme({
     typography: {
       fontFamily: 'Segoe UI Light'
@@ -17,7 +21,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route exact path='/' element={<ShowEventList />} />
+          <Route exact path='/' element={isDesktop ? <ShowEventList /> : <MobileEventList />} />
           <Route path='/create-event' element={<CreateEvent />} />
           <Route path='/edit-event/:id' element={<UpdateEventInfo />} />
           <Route path='/show-event/:id' element={<ShowEventDetails />} />

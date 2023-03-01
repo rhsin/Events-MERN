@@ -28,3 +28,18 @@ export function addDays(date, days) {
   
   return result;
 }
+
+export const sliderMarks = [
+  {
+    value: 30,
+    label: '30',
+  },
+  {
+    value: 60,
+    label: '60',
+  },
+  {
+    value: 90,
+    label: '90',
+  }
+];

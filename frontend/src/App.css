@@ -39,7 +39,14 @@ a {
   color: rgb(146, 57, 57);;
 }
 
-@media screen and (min-width: 799px) {
+.date-picker {
+  display: inline-block;
+  width: 10em;
+  height: 3.15em;
+  margin: .15em;
+}
+
+@media screen and (min-width: 700px) {
   .google-map {
     height: 80vh;
   }
@@ -54,11 +61,19 @@ a {
   }
 }
 
-.date-picker {
-  display: inline-block;
-  width: 10em;
-  height: 3.15em;
-  margin: .15em;
+@media screen and (max-width: 480px) {
+  table {
+    word-break: break-word;
+  }
+
+  td {
+    min-width: 90px;
+    font-size: .77rem !important;
+  }
+
+  .event-paper {
+    margin: .05em;
+  }
 }
 
 .event-card {
@@ -92,5 +107,7 @@ a {
 ::-webkit-scrollbar-thumb {
   background: #ebe8e8;
 }
+
+
 
   

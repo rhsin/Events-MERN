@@ -1,8 +1,9 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import React from 'react';
+
 import SearchIcon from '@mui/icons-material/Search';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 
 function InputWithIcon({ handleChange, handleClick }) {
   return (
@@ -10,15 +11,15 @@ function InputWithIcon({ handleChange, handleClick }) {
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
         <IconButton
           onClick={handleClick}
-          size='small'
+          size='medium'
           style={{ padding: '0em .25em' }}
         >
           <SearchIcon />
         </IconButton>
         <TextField 
-          id="input-with-sx" 
-          label="Search Location" 
-          variant="standard" 
+          id='input-with-sx' 
+          label='Search Location' 
+          variant='standard' 
           onChange={e => handleChange(e.target.value)} 
         />
       </Box>

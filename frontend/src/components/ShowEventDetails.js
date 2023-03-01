@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import axios from 'axios';
 import moment from 'moment';
+import { Link, useParams } from 'react-router-dom';
+
 import { url } from './constants'; 
 
 function ShowEventDetails() {
   const [event, setEvent] = useState({});
+
+  const isDesktop = useMediaQuery('(min-width: 700px)');
+
+  const imageStyle = isDesktop ? { height: 360 }  : { height: 120 };
 
   const { id } = useParams();
   
@@ -72,14 +79,14 @@ function ShowEventDetails() {
   );
 
   return (
-    <Container maxWidth='md'>
+    <Container maxWidth='md' sx={{ marginTop: 2 }}>
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardMedia
-          sx={{ height: 360 }}
+          sx={imageStyle}
           // image={event.thumbnail}
         />
         <CardContent>
-          <Typography gutterBottom variant='h4' component='div'>
+          <Typography sx={{ m: 1 }} variant={isDesktop ? 'h4' : 'h5'} component='div'>
             {event.name}
           </Typography>
           <Typography variant='body1' color='text.secondary'>
@@ -87,14 +94,14 @@ function ShowEventDetails() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size='large' color='success'>
+          <Button size={isDesktop ? 'large' : 'medium'} color='success'>
             <Link
               to={`/edit-event/${event._id}`}
             >
               Edit Event
             </Link>
           </Button>
-          <Button size='large'>
+          <Button size={isDesktop ? 'large' : 'medium'}>
             <Link to='/'>Back To Map</Link>
           </Button>
         </CardActions>
