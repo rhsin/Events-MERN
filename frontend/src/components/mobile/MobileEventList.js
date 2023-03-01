@@ -82,7 +82,7 @@ function MobileEventList() {
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         setCenter({ lat: lat, lng: lng });
-        setZoomLevel(9);
+        setZoomLevel(8);
         console.log(center);
       },
       (error) => {
