@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ShowEventList from './components/ShowEventList';
-import MobileEventList from './components/mobile/MobileEventList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import CreateEvent from './components/CreateEvent';
+import MobileEventList from './components/mobile/MobileEventList';
 import ShowEventDetails from './components/ShowEventDetails';
+import ShowEventList from './components/ShowEventList';
 import UpdateEventInfo from './components/UpdateEventInfo';
 import './App.css';
 
