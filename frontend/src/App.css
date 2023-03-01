@@ -67,12 +67,12 @@ a {
   }
 
   td {
-    min-width: 90px;
-    font-size: .77rem !important;
+    min-width: 94px;
+    font-size: .74rem !important;
   }
 
   .event-paper {
-    margin: .05em;
+    margin: 0em;
   }
 }
 
