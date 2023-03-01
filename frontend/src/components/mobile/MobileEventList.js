@@ -25,7 +25,7 @@ function MobileEventList() {
   // const [category, setCategory] = useState('Cycling');
   const [date2, setDate2] = useState(addDays(Date.now(), 60));
   const [center, setCenter] = useState({ lat: null, lng: null });
-  const [zoomLevel, setZoomLevel] = useState(7);
+  const [zoomLevel, setZoomLevel] = useState(6);
   const [updatedCenter, setUpdatedCenter] = useState({ lat: null, lng: null });
   const [keyword, setKeyword] = useState('');
   const [neBounds, setNeBounds] = useState({ lat: null, lng: null });
