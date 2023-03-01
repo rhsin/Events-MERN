@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 
-function InputWithIcon({ handleChange, handleClick }) {
+function SearchBar({ handleChange, handleClick }) {
   return (
     <Box sx={{ '& > :not(style)': { m: .5 } }}>
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -27,4 +27,4 @@ function InputWithIcon({ handleChange, handleClick }) {
   );
 }
 
-export default InputWithIcon;
+export default SearchBar;

@@ -3,10 +3,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import CreateEvent from './components/CreateEvent';
+import EventDetails from './components/EventDetails';
+import EventList from './components/EventList';
 import MobileEventList from './components/mobile/MobileEventList';
-import ShowEventDetails from './components/ShowEventDetails';
-import ShowEventList from './components/ShowEventList';
-import UpdateEventInfo from './components/UpdateEventInfo';
+import UpdateEvent from './components/UpdateEvent';
 import './App.css';
 
 function App() {
@@ -22,10 +22,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route exact path='/' element={isDesktop ? <ShowEventList /> : <MobileEventList />} />
+          <Route exact path='/' element={isDesktop ? <EventList /> : <MobileEventList />} />
           <Route path='/create-event' element={<CreateEvent />} />
-          <Route path='/edit-event/:id' element={<UpdateEventInfo />} />
-          <Route path='/show-event/:id' element={<ShowEventDetails />} />
+          <Route path='/edit-event/:id' element={<UpdateEvent />} />
+          <Route path='/show-event/:id' element={<EventDetails />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

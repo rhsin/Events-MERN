@@ -18,7 +18,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { url } from './constants'; 
 
-function ShowEventDetails() {
+function EventDetails() {
   const [event, setEvent] = useState({});
 
   const isDesktop = useMediaQuery('(min-width: 700px)');
@@ -110,6 +110,6 @@ function ShowEventDetails() {
   );
 }
 
-export default ShowEventDetails;
+export default EventDetails;
 
 

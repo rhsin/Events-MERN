@@ -15,7 +15,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import { url, categories } from './constants'; 
 
-function UpdateEventInfo() {
+function UpdateEvent() {
   const [category, setCategory] = useState('Cycling');
   const [event, setEvent] = useState({
     name: '',
@@ -208,4 +208,4 @@ function UpdateEventInfo() {
   );
 }
 
-export default UpdateEventInfo;
+export default UpdateEvent;
