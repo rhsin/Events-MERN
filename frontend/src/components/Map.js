@@ -13,7 +13,7 @@ function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
 
   const containerStyle = isDesktop ? 
     { width: '100%', height: '100%' } :
-    { width: '360px', height: '460px' };
+    { width: '360px', height: '360px' };
 
   const mapStyle = isDesktop ? {} :
     { 
