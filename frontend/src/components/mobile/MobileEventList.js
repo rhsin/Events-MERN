@@ -18,13 +18,13 @@ import { url, categories, api_key } from '../constants';
 import { filteredEvents, getMapBounds, handleSearch, defaultCenter } from '../EventFilter';
 import { addDays } from '../helpers';  
 import Map from '../Map';
-import { initialState, initialMapState, reducer } from '../store/store';
+import { initialState, initialMobileMapState, reducer } from '../store/store';
 
 function MobileEventList() {
   const [open, setOpen] = useState(false);
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [mapState, dispatchMap] = useReducer(reducer, initialMapState);
+  const [mapState, dispatchMap] = useReducer(reducer, initialMobileMapState);
 
   const { location } = state;
   const { mapRef, center, zoomLevel } = mapState;
@@ -56,7 +56,7 @@ function MobileEventList() {
       <Grid item sm={12}>
         <SearchBar 
           handleChange={keyword => handleChange(keyword)} 
-          handleClick={() => handleSearch(api_key, location, dispatchMap)}    
+          handleClick={() => handleSearch(api_key, location, dispatchMap, 8)}    
         />
 
         <Stack 

@@ -70,7 +70,7 @@ function EventList() {
           </Button>
           <SearchBar 
             handleChange={location => handleChange(location)} 
-            handleClick={() => handleSearch(api_key, location, dispatchMap)}  
+            handleClick={() => handleSearch(api_key, location, dispatchMap, 9)}  
           />
         </Stack>
         

@@ -43,13 +43,13 @@ export const getMapBounds = (mapRef, dispatchMap) => {
   }
 };
 
-export const handleSearch = (api_key, location, dispatchMap) => {
+export const handleSearch = (api_key, location, dispatchMap, zoom) => {
   Geocode.setApiKey(api_key);
   Geocode.fromAddress(location).then(
     (res) => {
       const { lat, lng } = res.results[0].geometry.location;
       dispatchMap({ type: 'center', payload: { lat: lat, lng: lng }});
-      dispatchMap({ type: 'zoomLevel', payload: 9 });
+      dispatchMap({ type: 'zoomLevel', payload: zoom });
     },
     (err) => {
       console.log(err);

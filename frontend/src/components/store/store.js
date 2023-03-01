@@ -17,6 +17,15 @@ export const initialMapState = {
   swBounds: { lat: null, lng: null },
 };
 
+export const initialMobileMapState = { 
+  mapRef: null,
+  center: { lat: null, lng: null },
+  updatedCenter: { lat: null, lng: null },
+  zoomLevel: 6,
+  neBounds: { lat: null, lng: null },
+  swBounds: { lat: null, lng: null },
+};
+
 export const reducer = (state, action) => {
   const { type, payload } = action;
 
