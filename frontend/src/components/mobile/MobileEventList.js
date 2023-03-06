@@ -26,7 +26,7 @@ function MobileEventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMobileMapState);
 
-  const { location } = state;
+  const { events, location } = state;
   const { mapRef, center, zoomLevel } = mapState;
 
   useEffect(() => {
@@ -50,6 +50,9 @@ function MobileEventList() {
   const handleSlider = (days) => {
     dispatch({ type: 'date2', payload: addDays(Date.now(), days) });
   };
+
+  const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
+    events.map((event, k) => <EventCard event={event} key={k} />); 
 
   return (
     <Grid container sx={{ flexGrow: 1 }}>
@@ -111,17 +114,24 @@ function MobileEventList() {
       </Grid>
 
       <Grid item sm={12}>
-        <Button
-          size="large"
-          style={{ height: 60 }}
-          onClick={() => setOpen(true)}
-        >
-          Open Event List
-        </Button>          
+        <Stack direction='row'>
+          <Button
+            size="large"
+            style={{ height: 60 }}
+            onClick={() => setOpen(true)}
+          >
+            Open Event List
+          </Button>
+          <Box display='flex' alignItems='flex-end'>
+            <div className='results-count'>
+              Results: {mappedEvents.length}
+            </div>
+          </Box>      
+        </Stack>
       </Grid>
 
       <EventsModal
-        events={filteredEvents(state, mapState).mappedEventList}
+        events={mappedEvents}
         open={open}
         handleClose={() => setOpen(false)}
       />

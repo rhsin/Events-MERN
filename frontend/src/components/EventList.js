@@ -17,6 +17,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import { url, categories, api_key } from './constants';
+import EventCard from './EventCard';
 import { filteredEvents, getMapBounds, handleSearch, defaultCenter } from './EventFilter';
 import Map from './Map';
 import SearchBar from './SearchBar';
@@ -26,7 +27,7 @@ function EventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMapState);
 
-  const { location, date1, date2, category } = state;
+  const { events, location, date1, date2, category } = state;
   const { mapRef, center, zoomLevel } = mapState;
 
   useEffect(() => {
@@ -46,6 +47,9 @@ function EventList() {
   const handleChange = (location) => {
     dispatch({ type: 'location', payload: location });
   };
+
+  const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
+    events.map((event, k) => <EventCard event={event} key={k} />); 
 
   return (
     <Grid container>
@@ -108,7 +112,12 @@ function EventList() {
             </LocalizationProvider>
           </Box>
 
-          <Box>
+          <Stack direction='row'>
+            <Box display='flex' alignItems='flex-end'>
+              <div className='results-count'>
+                Results: {mappedEvents.length}
+              </div>
+            </Box>
             <FormControl size='small'>
               <InputLabel id='select-category'>Category</InputLabel>
               <Select 
@@ -136,7 +145,7 @@ function EventList() {
                   <MenuItem value={10}>50 miles</MenuItem>
                 </Select>
             </FormControl>
-          </Box>
+          </Stack>
         </Stack>
       </Grid>
 
@@ -144,7 +153,7 @@ function EventList() {
         <List 
           style={{maxHeight: 1165, overflow: 'auto'}}
         >
-          {filteredEvents(state, mapState).mappedEventList}
+          {mappedEvents}
         </List>
       </Grid>
       

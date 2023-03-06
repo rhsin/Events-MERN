@@ -46,6 +46,12 @@ a {
   margin: .15em;
 }
 
+.results-count {
+  font-size: 1.2rem;
+  font-weight: 250;
+  padding: .3em .7em;
+}
+
 @media screen and (min-width: 700px) {
   .google-map {
     height: 80vh;
@@ -73,6 +79,12 @@ a {
 
   .event-paper {
     margin: 0em;
+  }
+
+  .results-count {
+    font-size: 1.05rem;
+    font-weight: 250;
+    padding: 0em 0em 1.1em .8em;
   }
 }
 
