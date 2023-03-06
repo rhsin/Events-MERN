@@ -15,6 +15,7 @@ import axios from 'axios';
 import EventsModal from './EventsModal';
 import SearchBar from './MobileSearchBar';
 import { url, categories, api_key } from '../constants';
+import EventCard from '../EventCard';
 import { filteredEvents, getMapBounds, handleSearch, defaultCenter } from '../EventFilter';
 import { addDays } from '../helpers';  
 import Map from '../Map';
@@ -82,7 +83,8 @@ function MobileEventList() {
                 max={60}
                 valueLabelDisplay='auto'
                 valueLabelFormat={value => `${value} days`}
-                onChange={e => handleSlider(e.target.value)} />
+                onChange={e => handleSlider(e.target.value)} 
+              />
             </Stack>
           </Box>
 
