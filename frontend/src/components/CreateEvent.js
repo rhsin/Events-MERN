@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { url, categories } from './constants'; 
+import { newUrl, categories } from './constants'; 
 
 function CreateEvent() {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ function CreateEvent() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post(url, event)
+    axios.post(newUrl, event)
       .then(res => {
         setEvent({
           name: '',
@@ -171,7 +171,11 @@ function CreateEvent() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button type='submit' size='large' color='success'>
+          <Button 
+            onClick={onSubmit} 
+            size='large' 
+            color='success'
+          >
             Submit Event
           </Button>
           <Button size='large'>

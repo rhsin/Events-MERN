@@ -196,7 +196,11 @@ function UpdateEvent() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button type='submit' size='large' color='success'>
+          <Button 
+            onClick={onSubmit} 
+            size='large' 
+            color='success'
+          >
             Update Event
           </Button>
           <Button size='large'>
