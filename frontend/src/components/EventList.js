@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -26,6 +26,7 @@ import { initialState, initialMapState, reducer } from './store/store';
 function EventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMapState);
+  const [keyword, setKeyword] = useState(null);
 
   const { events, location, date1, date2, category } = state;
   const { mapRef, center, zoomLevel } = mapState;
@@ -48,8 +49,16 @@ function EventList() {
     dispatch({ type: 'location', payload: location });
   };
 
+  const searchLocation = () => {
+    handleSearch(api_key, location, dispatchMap, 9);
+    setKeyword(location);
+  };
+
   const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
     events.map((event, k) => <EventCard event={event} key={k} />); 
+
+  const results = keyword ? `Results in ${keyword}: ${mappedEvents.length}` :
+    `Results: ${mappedEvents.length}`;
 
   return (
     <Grid container>
@@ -74,7 +83,7 @@ function EventList() {
           </Button>
           <SearchBar 
             handleChange={location => handleChange(location)} 
-            handleClick={() => handleSearch(api_key, location, dispatchMap, 9)}  
+            handleClick={searchLocation}  
           />
         </Stack>
         
@@ -113,11 +122,6 @@ function EventList() {
           </Box>
 
           <Stack direction='row'>
-            <Box display='flex' alignItems='flex-end'>
-              <div className='results-count'>
-                Results: {mappedEvents.length}
-              </div>
-            </Box>
             <FormControl size='small'>
               <InputLabel id='select-category'>Category</InputLabel>
               <Select 
@@ -150,6 +154,11 @@ function EventList() {
       </Grid>
 
       <Grid item sm={3.5}> 
+        <Box display='flex' alignItems='flex-end'>
+          <div className='results-count'>
+            {results}
+          </div>
+        </Box>
         <List 
           style={{maxHeight: 1165, overflow: 'auto'}}
         >

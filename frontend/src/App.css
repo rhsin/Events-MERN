@@ -43,13 +43,13 @@ a {
   display: inline-block;
   width: 10em;
   height: 3.15em;
-  margin: .15em;
+  margin: .15em 0em;
 }
 
 .results-count {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 250;
-  padding: .3em .7em;
+  margin: .5em 0em .15em .75em;
 }
 
 @media screen and (min-width: 700px) {
