@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -26,9 +26,8 @@ import { initialState, initialMapState, reducer } from './store/store';
 function EventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMapState);
-  const [keyword, setKeyword] = useState(null);
 
-  const { events, location, date1, date2, category } = state;
+  const { events, keyword, location, date1, date2, category } = state;
   const { mapRef, center, zoomLevel } = mapState;
 
   useEffect(() => {
@@ -45,19 +44,19 @@ function EventList() {
     dispatchMap({ type: 'mapRef', payload: map });
   };
 
-  const handleChange = (location) => {
-    dispatch({ type: 'location', payload: location });
+  const handleChange = (keyword) => {
+    dispatch({ type: 'keyword', payload: keyword });
   };
 
   const searchLocation = () => {
-    handleSearch(api_key, location, dispatchMap, 9);
-    setKeyword(location);
+    handleSearch(api_key, keyword, dispatchMap, 9);
+    dispatch({ type: 'location', payload: keyword });
   };
 
   const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
     events.map((event, k) => <EventCard event={event} key={k} />); 
 
-  const results = keyword ? `Results in ${keyword}: ${mappedEvents.length}` :
+  const results = location ? `Results in ${location}: ${mappedEvents.length}` :
     `Results: ${mappedEvents.length}`;
 
   return (
@@ -82,7 +81,7 @@ function EventList() {
             </Link>
           </Button>
           <SearchBar 
-            handleChange={location => handleChange(location)} 
+            handleChange={keyword => handleChange(keyword)} 
             handleClick={searchLocation}  
           />
         </Stack>

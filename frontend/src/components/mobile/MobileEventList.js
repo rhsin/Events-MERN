@@ -27,7 +27,7 @@ function MobileEventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMobileMapState);
 
-  const { events, location } = state;
+  const { events, keyword, location } = state;
   const { mapRef, center, zoomLevel } = mapState;
 
   useEffect(() => {
@@ -44,23 +44,31 @@ function MobileEventList() {
     dispatchMap({ type: 'mapRef', payload: map });
   };
 
-  const handleChange = (location) => {
-    dispatch({ type: 'location', payload: location });
-  };
-
   const handleSlider = (days) => {
     dispatch({ type: 'date2', payload: addDays(Date.now(), days) });
+  };
+
+  const handleChange = (keyword) => {
+    dispatch({ type: 'keyword', payload: keyword });
+  };
+
+  const searchLocation = () => {
+    handleSearch(api_key, keyword, dispatchMap, 8);
+    dispatch({ type: 'location', payload: keyword });
   };
 
   const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
     events.map((event, k) => <EventCard event={event} key={k} />); 
 
+  const results = location ? `Results in ${location}: ${mappedEvents.length}` :
+    `Results: ${mappedEvents.length}`;
+  
   return (
     <Grid container sx={{ flexGrow: 1 }}>
       <Grid item sm={12}>
         <SearchBar 
           handleChange={keyword => handleChange(keyword)} 
-          handleClick={() => handleSearch(api_key, location, dispatchMap, 8)}    
+          handleClick={searchLocation}    
         />
 
         <Stack 
@@ -126,7 +134,7 @@ function MobileEventList() {
           </Button>
           <Box display='flex' alignItems='flex-end'>
             <div className='results-count'>
-              Results: {mappedEvents.length}
+              {results}
             </div>
           </Box>      
         </Stack>

@@ -2,7 +2,8 @@ import { addDays } from '../helpers';
 
 export const initialState = { 
   events: [],
-  location: '',
+  keyword: null,
+  location: null,
   date1: addDays(Date.now(), -55),
   date2: addDays(Date.now(), 40),
   category: 'Cycling'
