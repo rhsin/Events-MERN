@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080;
 
 connectDB();
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors());
 app.use(express.json({ extended: false }));
 app.use('/events', eventsRouter);
 app.use('/new', newEventsRouter);
