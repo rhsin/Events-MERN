@@ -28,7 +28,7 @@ function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
   return (
     <Box className='google-map'>
       <LoadScript
-        googleMapsApiKey={process.env.API_KEY}
+        googleMapsApiKey={process.env.REACT_APP_API_KEY}
       >
         <GoogleMap
           onLoad={handleOnLoad}

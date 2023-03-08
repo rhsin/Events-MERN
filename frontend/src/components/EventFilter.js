@@ -43,13 +43,26 @@ export const getMapBounds = (mapRef, dispatchMap) => {
   }
 };
 
-export const handleSearch = (api_key, location, dispatchMap, zoom) => {
-  Geocode.setApiKey(api_key);
+export const handleSearch = (location, dispatchMap, zoom) => {
+  Geocode.setApiKey(process.env.REACT_APP_API_KEY);
   Geocode.fromAddress(location).then(
     (res) => {
       const { lat, lng } = res.results[0].geometry.location;
       dispatchMap({ type: 'center', payload: { lat: lat, lng: lng }});
       dispatchMap({ type: 'zoomLevel', payload: zoom });
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+};
+
+export const getLatLng = (location) => {
+  Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+  Geocode.fromAddress(location).then(
+    (res) => {
+      const { lat, lng } = res.results[0].geometry.location;
+      return{ lat: lat, lng: lng };
     },
     (err) => {
       console.log(err);

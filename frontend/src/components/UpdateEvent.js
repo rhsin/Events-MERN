@@ -14,6 +14,7 @@ import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import { url, categories } from './constants'; 
+import { getLatLng } from './EventFilter';
 
 function UpdateEvent() {
   const [category, setCategory] = useState('Gravel');
@@ -64,8 +65,8 @@ function UpdateEvent() {
     const data = {
       name: event.name,
       location: event.location,
-      lat: event.lat,
-      lng: event.lng,
+      lat: getLatLng(event.location).lat,
+      lng: getLatLng(event.location).lng,
       link: event.link,
       start: event.start,
       end: event.end,

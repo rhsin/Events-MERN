@@ -16,7 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { url, categories, api_key } from './constants';
+import { url, categories } from './constants';
 import EventCard from './EventCard';
 import { filteredEvents, getMapBounds, handleSearch, defaultCenter } from './EventFilter';
 import Map from './Map';
@@ -49,7 +49,7 @@ function EventList() {
   };
 
   const searchLocation = () => {
-    handleSearch(api_key, keyword, dispatchMap, 9);
+    handleSearch(keyword, dispatchMap, 9);
     dispatch({ type: 'location', payload: keyword });
   };
 

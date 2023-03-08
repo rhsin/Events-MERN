@@ -14,6 +14,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { newUrl, categories } from './constants'; 
+import { getLatLng } from './EventFilter';
 
 function CreateEvent() {
   const navigate = useNavigate();
@@ -37,6 +38,10 @@ function CreateEvent() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setEvent(event => ({...event,
+      lat: getLatLng(event.location).lat,
+      lng: getLatLng(event.location).lng,
+    }));
     axios.post(newUrl, event)
       .then(res => {
         setEvent({

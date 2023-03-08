@@ -85,7 +85,7 @@ function AdminPanel() {
                   </TableBody>
                 </Table>
               </Box>
-              <Button onClick={id => handleClick(id)} sx={{ margin: '0 .75em .75em 1.25em' }}>
+              <Button onClick={id => handleClick(event.id)} sx={{ margin: '0 .75em .75em 1.25em' }}>
                 Approve
               </Button>
             </Paper>

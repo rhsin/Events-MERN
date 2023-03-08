@@ -14,7 +14,7 @@ import axios from 'axios';
 
 import EventsModal from './EventsModal';
 import SearchBar from './MobileSearchBar';
-import { url, categories, api_key } from '../constants';
+import { url, categories } from '../constants';
 import EventCard from '../EventCard';
 import { filteredEvents, getMapBounds, handleSearch, defaultCenter } from '../EventFilter';
 import { addDays } from '../helpers';  
@@ -53,7 +53,7 @@ function MobileEventList() {
   };
 
   const searchLocation = () => {
-    handleSearch(api_key, keyword, dispatchMap, 8);
+    handleSearch(keyword, dispatchMap, 8);
     dispatch({ type: 'location', payload: keyword });
   };
 
