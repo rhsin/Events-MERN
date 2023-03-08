@@ -1,5 +1,5 @@
-
 const express = require('express');
+const { isLoggedIn } = require("./middleware");
 const Event = require('../models/Event');
 
 const router = express.Router();
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 
 // @route POST events
 // @description Add/save event
-router.post('/', (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
   Event.create(req.body)
     .then(event => res.json({ msg: 'Event added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this event' }));
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
 
 // @route PUT events/:id
 // @description Update event
-router.put('/:id', (req, res) => {
+router.put('/:id', isLoggedIn, (req, res) => {
   Event.findByIdAndUpdate(req.params.id, req.body)
     .then(event => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
@@ -40,7 +40,7 @@ router.put('/:id', (req, res) => {
 
 // @route DELETE events/:id
 // @description Delete event by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isLoggedIn, (req, res) => {
   Event.findByIdAndRemove(req.params.id, req.body)
     .then(event => res.json({ mgs: 'Event entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such a event' }));
