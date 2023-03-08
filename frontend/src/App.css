@@ -104,6 +104,10 @@ a {
   margin: .4em;
 }
 
+.new-event-paper {
+  margin: .5em
+}
+
 .new-event-card {
   padding: .75em;
 }

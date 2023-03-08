@@ -16,7 +16,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { url, categories } from './constants'; 
 
 function UpdateEvent() {
-  const [category, setCategory] = useState('Cycling');
+  const [category, setCategory] = useState('Gravel');
   const [event, setEvent] = useState({
     name: '',
     location: '',
@@ -111,7 +111,7 @@ function UpdateEvent() {
                     style={{minWidth: 120}}
                     id='select-category' 
                     label='Category'
-                    defaultValue='Cycling'
+                    defaultValue='Gravel'
                     onChange={e => setCategory(e.target.value)}
                   >
                     {categories && categories.map((category, i) => 

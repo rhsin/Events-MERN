@@ -5,6 +5,10 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -41,27 +45,47 @@ function AdminPanel() {
     <Container maxWidth='md' sx={{ marginTop: 2 }}>
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <br />
-        <h2 className='display-4 text-center'>Admin Panel</h2>
-        <br />
-        <List 
-            style={{maxHeight: 1165, overflow: 'auto'}}
-          >
+        <h2 className='display-4 text-center'>Approve Events</h2>
+        <List style={{maxHeight: 1165, overflow: 'auto'}}>
           {newEvents && newEvents.map(event => 
-            <Paper elevation={3} className='event-paper'>
+            <Paper elevation={3} className='new-event-paper'>
               <Box className='new-event-card'>
-                <h2>
-                  {event.name}
-                </h2>
-                <p>{event.location}</p>
-                <p><a href={event.link}>{event.link}</a></p>
-                <p>
-                  {moment(event.start).format('MMMM Do, YYYY')} -
-                  {moment(event.end).format('MMMM Do, YYYY')}
-                </p>
-                <p>{event.promoter}</p>
-                <p>{event.description}</p>
+                <Table size="small">
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell>{event.name}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Category</TableCell>
+                      <TableCell>{event.category}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Location</TableCell>
+                      <TableCell>{event.location}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Link</TableCell>
+                      <TableCell><a href={event.link}>{event.link}</a></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Date</TableCell>
+                      <TableCell>
+                        {moment(event.start).format('MMMM Do, YYYY')} - {moment(event.end).format('MMMM Do, YYYY')}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Promoter</TableCell>
+                      <TableCell>{event.promoter}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Description</TableCell>
+                      <TableCell>{event.description}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </Box>
-              <Button onClick={id => handleClick(id)} sx={{ margin: '0 .75em .75em .75em' }}>
+              <Button onClick={id => handleClick(id)} sx={{ margin: '0 .75em .75em 1.25em' }}>
                 Approve
               </Button>
             </Paper>

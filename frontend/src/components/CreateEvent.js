@@ -17,7 +17,7 @@ import { newUrl, categories } from './constants';
 
 function CreateEvent() {
   const navigate = useNavigate();
-  const [category, setCategory] = useState('Cycling');
+  const [category, setCategory] = useState('Gravel');
   const [event, setEvent] = useState({
     name: '',
     location: '',
@@ -86,7 +86,7 @@ function CreateEvent() {
                     style={{minWidth: 120}}
                     id='select-category' 
                     label='Category'
-                    defaultValue='Cycling'
+                    defaultValue='Gravel'
                     onChange={e => setCategory(e.target.value)}
                   >
                     {categories && categories.map((category, i) => 
