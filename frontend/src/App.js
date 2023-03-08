@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import AdminPanel from './components/admin/AdminPanel';
 import CreateEvent from './components/CreateEvent';
 import EventDetails from './components/EventDetails';
 import EventList from './components/EventList';
@@ -26,6 +27,7 @@ function App() {
           <Route path='/create-event' element={<CreateEvent />} />
           <Route path='/edit-event/:id' element={<UpdateEvent />} />
           <Route path='/show-event/:id' element={<EventDetails />} />
+          <Route path='/admin' element={<AdminPanel />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

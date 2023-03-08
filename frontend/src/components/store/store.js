@@ -2,6 +2,7 @@ import { addDays } from '../helpers';
 
 export const initialState = { 
   events: [],
+  newEvents: [],
   keyword: null,
   location: null,
   date1: addDays(Date.now(), -55),

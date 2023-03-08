@@ -104,6 +104,21 @@ a {
   margin: .4em;
 }
 
+.new-event-card {
+  padding: .75em;
+}
+
+.new-event-card h2 {
+  font-size: 1em;
+  font-weight: 400;
+  margin: .25em;
+}
+
+.new-event-card h3, p {
+  font-weight: 300;
+  margin: .4em;
+}
+
 *:focus {
   outline: none !important;
 }
