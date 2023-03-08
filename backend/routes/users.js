@@ -8,9 +8,6 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-//DESTRUCTURE ENV VARIABLES WITH DEFAULTS
-const { SECRET = "secret" } = process.env;
-
 // Signup route to create a new user
 router.post('/signup', async (req, res) => {
   try {
@@ -36,7 +33,7 @@ router.post('/login', async (req, res) => {
       const result = await bcrypt.compare(req.body.password, user.password);
       if (result) {
         // Sign token and send it in response
-        const token = await jwt.sign({ username: user.username }, SECRET);
+        const token = await jwt.sign({ username: user.username }, process.env.SECRET);
         res.json({ token });
       } 
       else {

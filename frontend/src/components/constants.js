@@ -15,5 +15,5 @@ export const default_location = {
   lng: -97.154178,
 };
 
-export const api_key = 'AIzaSyBqEmfFI3kNdmieWunM_v5TmL5fXGeaIa4';
+
 

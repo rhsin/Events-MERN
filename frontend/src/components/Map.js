@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { GoogleMap, LoadScript, OverlayView } from '@react-google-maps/api';
 
-import { api_key } from './constants';
 import LocationPin from './LocationPin';
 import MobileLocationPin from './mobile/MobileLocationPin';
 
@@ -29,7 +28,7 @@ function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
   return (
     <Box className='google-map'>
       <LoadScript
-        googleMapsApiKey={api_key}
+        googleMapsApiKey={process.env.API_KEY}
       >
         <GoogleMap
           onLoad={handleOnLoad}
