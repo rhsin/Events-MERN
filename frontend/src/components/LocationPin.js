@@ -19,7 +19,7 @@ const styles = {
     fontWeight: 'bold',
     position: 'absolute',
     top: '15%',
-    left: '24%'
+    left: '25%'
   }
 };
 
@@ -39,15 +39,17 @@ function LocationPin({ event }) {
 
   return (
     <Box>
-      <Typography onClick={handleClick} style={styles.typography}>
-        {moment(event.start).format('MMM')}
-      </Typography>
-      <ChatBubbleIcon 
-        color='primary.dark' 
-        style={{ 
-          fontSize: 45
-        }} 
-      />
+      <Box onClick={handleClick}>
+        <Typography style={styles.typography}>
+          {moment(event.start).format('MMM')}
+        </Typography>
+        <ChatBubbleIcon 
+          color='primary.dark' 
+          style={{ 
+            fontSize: 45
+          }} 
+        />
+      </Box>
       <Popover
         id={id}
         open={open}
