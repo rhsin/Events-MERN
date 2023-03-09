@@ -5,7 +5,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { GoogleMap, LoadScript, OverlayView } from '@react-google-maps/api';
 
 import LocationPin from './LocationPin';
-import MobileLocationPin from './mobile/MobileLocationPin';
 
 function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
   const isDesktop = useMediaQuery('(min-width: 700px)');
@@ -20,10 +19,6 @@ function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
       zoomControl: true,
       fullscreenControl: true 
     };
-  
-  const MapPin = (event) => isDesktop ? 
-    <LocationPin  event={event} lat={event.lat} lng={event.lng} /> : 
-    <MobileLocationPin  event={event} lat={event.lat} lng={event.lng} />;
 
   return (
     <Box className='google-map'>
@@ -44,7 +39,7 @@ function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
               mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               key={i}
             >
-              {MapPin(event)}
+              <LocationPin event={event} lat={event.lat} lng={event.lng} />
             </OverlayView>
           )}
         </GoogleMap>

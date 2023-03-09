@@ -22,23 +22,6 @@ a {
   align-items: center;
 }
 
-.pin-label {
-  border-radius: 2em;
-  margin-left: 1.8em;
-  color: red;
-  padding: .25em;
-}
-
-.pin-text {
-  font-size: 1.3em;
-  color: rgb(146, 57, 57);
-  padding: .3em;
-}
-
-.pin-link {
-  color: rgb(146, 57, 57);;
-}
-
 .date-picker {
   display: inline-block;
   width: 10em;
