@@ -11,10 +11,11 @@ import Paper from '@mui/material/Paper';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import Geocode from 'react-geocode';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { newUrl, categories } from './constants'; 
-import { getLatLng } from './EventFilter';
+// import { getLatLng } from './EventFilter';
 
 function CreateEvent() {
   const navigate = useNavigate();
@@ -36,12 +37,26 @@ function CreateEvent() {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const getLatLng = () => {
+    Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+    Geocode.fromAddress(event.location).then(
+      (res) => {
+        const result = res.results[0].geometry.location;
+        console.log(result);
+        setEvent(({...event,
+          ['lat']: result.lat,
+          ['lng']: result.lng,
+        }));
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setEvent(event => ({...event,
-      lat: getLatLng(event.location).lat,
-      lng: getLatLng(event.location).lng,
-    }));
+    getLatLng();
     axios.post(newUrl, event)
       .then(res => {
         setEvent({

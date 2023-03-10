@@ -57,13 +57,13 @@ function AdminPanel() {
   };
 
   const handleClick = (id) => {
-    axios.post(`${newUrl}/main/${id}`)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
+    axios.post(`${newUrl}/${id}`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -110,7 +110,7 @@ function AdminPanel() {
                   </TableBody>
                 </Table>
               </Box>
-              <Button onClick={id => handleClick(event.id)} sx={{ margin: '0 .75em .75em 1.25em' }}>
+              <Button onClick={id => handleClick(event._id)} sx={{ margin: '0 .75em .75em 1.25em' }}>
                 Approve
               </Button>
             </Paper>

@@ -61,8 +61,9 @@ export const getLatLng = (location) => {
   Geocode.setApiKey(process.env.REACT_APP_API_KEY);
   Geocode.fromAddress(location).then(
     (res) => {
-      const { lat, lng } = res.results[0].geometry.location;
-      return{ lat: lat, lng: lng };
+      console.log(res.results[0].geometry.location)
+      const result = res.results[0].geometry.location;
+      return result;
     },
     (err) => {
       console.log(err);

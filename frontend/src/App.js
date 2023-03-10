@@ -33,7 +33,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={isDesktop ? <EventList /> : <MobileEventList />} />
             <Route path='/create-event' element={<CreateEvent />} />
-            <Route path='/edit-event/:id' element={<UpdateEvent />} />
+            <Route path='/edit-event/:id' element={<PrivateRoute><UpdateEvent /></PrivateRoute>} />
             <Route path='/show-event/:id' element={<EventDetails />} />
             <Route path='/signin' element={<SignIn />} />
             <Route path='/admin' element={<PrivateRoute><AdminPanel /></PrivateRoute>} />

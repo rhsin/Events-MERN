@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
 
 // @route POST new/main/:id
 // @description Add/save event to main collection
-router.post('/main/:id', (req, res) => {
+router.post('/:id', (req, res) => {
   Event.findById(req.params.id)
     .then(event => MainEvent.create(event))
     .then(json => res.json({ msg: 'Event added to main collection' }))

@@ -6,11 +6,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { auth } from '../../firebase';
 
@@ -24,14 +25,14 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
       .then((userCredential) => {
-          const user = userCredential.user;
-          navigate('/admin')
-          console.log(user);
+        const user = userCredential.user;
+        navigate('/admin')
+        console.log(user);
       })
       .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage)
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
       });
   };
 
@@ -82,6 +83,13 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            <Grid container justifyContent='flex-end'>
+              <Grid item>
+                <Link to='/' variant='body2'>
+                  Back to Home
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>
