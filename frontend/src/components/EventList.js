@@ -66,7 +66,9 @@ function EventList() {
           <br />
           <h2 className='display-4 text-center'>{category} Events</h2>
         </Box>
-    
+        <Box sx={{ ml: 1.3 }}>
+          <Link to='/signin'>Sign In</Link>
+        </Box>
         <Stack
           direction='row'
           display='flex'
