@@ -10,16 +10,19 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { auth } from '../../firebase';
 import { newUrl } from '../constants';
 import { initialState, reducer } from '../store/store';
 
 function AdminPanel() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const { newEvents } = state;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(newUrl)
@@ -30,6 +33,28 @@ function AdminPanel() {
         console.log(err.message);
       });
   }, []);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log('uid', uid)
+      } 
+      else {
+        console.log('User is logged out')
+      }
+    });
+  }, []);
+
+  const handleLogout = () => {               
+    signOut(auth).then(() => {
+      navigate('/');
+      console.log('Signed out successfully')
+    })      
+    .catch(err => {
+      console.log(err.message);
+    });
+  };
 
   const handleClick = (id) => {
     axios.post(`${newUrl}/main/${id}`)
@@ -50,7 +75,7 @@ function AdminPanel() {
           {newEvents && newEvents.map(event => 
             <Paper elevation={3} className='new-event-paper'>
               <Box className='new-event-card'>
-                <Table size="small">
+                <Table size='small'>
                   <TableBody>
                     <TableRow>
                       <TableCell>Name</TableCell>
@@ -94,6 +119,9 @@ function AdminPanel() {
 
         <Button sx={{ margin: 1 }}>
           <Link to='/'>Back To Map</Link>
+        </Button>
+        <Button onClick={handleLogout}>
+          Log out
         </Button>
       </Paper>
     </Container>
