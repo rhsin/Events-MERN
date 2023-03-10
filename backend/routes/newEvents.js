@@ -1,5 +1,4 @@
 const express = require('express');
-const { isLoggedIn } = require("./middleware");
 const Event = require('../models/NewEvent');
 const MainEvent = require('../models/Event');
 
@@ -23,7 +22,7 @@ router.get('/:id', (req, res) => {
 
 // @route POST new
 // @description Add/save event
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/', (req, res) => {
   Event.create(req.body)
     .then(event => res.json({ msg: 'Event added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this event' }));
@@ -31,7 +30,7 @@ router.post('/', isLoggedIn, (req, res) => {
 
 // @route POST new/main/:id
 // @description Add/save event to main collection
-router.post('/main/:id', isLoggedIn, (req, res) => {
+router.post('/main/:id', (req, res) => {
   Event.findById(req.params.id)
     .then(event => MainEvent.create(event))
     .then(json => res.json({ msg: 'Event added to main collection' }))
@@ -40,7 +39,7 @@ router.post('/main/:id', isLoggedIn, (req, res) => {
 
 // @route PUT new/:id
 // @description Update event
-router.put('/:id', isLoggedIn, (req, res) => {
+router.put('/:id', (req, res) => {
   Event.findByIdAndUpdate(req.params.id, req.body)
     .then(event => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
@@ -50,7 +49,7 @@ router.put('/:id', isLoggedIn, (req, res) => {
 
 // @route DELETE new/:id
 // @description Delete event by id
-router.delete('/:id', isLoggedIn, (req, res) => {
+router.delete('/:id', (req, res) => {
   Event.findByIdAndRemove(req.params.id, req.body)
     .then(event => res.json({ mgs: 'Event entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such a event' }));
