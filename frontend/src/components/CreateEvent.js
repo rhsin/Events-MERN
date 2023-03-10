@@ -42,11 +42,8 @@ function CreateEvent() {
     Geocode.fromAddress(event.location).then(
       (res) => {
         const result = res.results[0].geometry.location;
-        console.log(result);
-        setEvent(({...event,
-          ['lat']: result.lat,
-          ['lng']: result.lng,
-        }));
+        setEvent(({ ...event, ['lat']: result.lat }));
+        setEvent(({ ...event, ['lng']: result.lng }));
       },
       (err) => {
         console.log(err);
@@ -56,7 +53,7 @@ function CreateEvent() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    getLatLng();
+    await getLatLng();
     axios.post(newUrl, event)
       .then(res => {
         setEvent({

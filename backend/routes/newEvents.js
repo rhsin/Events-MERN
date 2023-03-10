@@ -1,13 +1,13 @@
 const express = require('express');
-const Event = require('../models/NewEvent');
-const MainEvent = require('../models/Event');
+const NewEvent = require('../models/NewEvent');
+const Event = require('../models/Event');
 
 const router = express.Router();
 
 // @route GET new
 // @description Get all events
 router.get('/', (req, res) => {
-  Event.find()
+  NewEvent.find()
     .then(events => res.json(events))
     .catch(err => res.status(404).json({ noeventsfound: 'No Events found' }));
 });
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // @route GET new/:id
 // @description Get single event by i
 router.get('/:id', (req, res) => {
-  Event.findById(req.params.id)
+  NewEvent.findById(req.params.id)
     .then(event => res.json(event))
     .catch(err => res.status(404).json({ noeventfound: 'No Event found' }));
 });
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 // @route POST new
 // @description Add/save event
 router.post('/', (req, res) => {
-  Event.create(req.body)
+  NewEvent.create(req.body)
     .then(event => res.json({ msg: 'Event added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this event' }));
 });
@@ -31,16 +31,18 @@ router.post('/', (req, res) => {
 // @route POST new/main/:id
 // @description Add/save event to main collection
 router.post('/:id', (req, res) => {
-  Event.findById(req.params.id)
-    .then(event => MainEvent.create(event))
+  NewEvent.findById(req.params.id).lean()
+    .then(event => {
+      Event.create(event);
+    })
     .then(json => res.json({ msg: 'Event added to main collection' }))
-    .catch(err => res.status(404).json({ noeventfound: 'No Event found' }));
+    .catch(err => res.status(400).json({ error: err }));
 });
 
 // @route PUT new/:id
 // @description Update event
 router.put('/:id', (req, res) => {
-  Event.findByIdAndUpdate(req.params.id, req.body)
+  NewEvent.findByIdAndUpdate(req.params.id, req.body)
     .then(event => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
@@ -50,7 +52,7 @@ router.put('/:id', (req, res) => {
 // @route DELETE new/:id
 // @description Delete event by id
 router.delete('/:id', (req, res) => {
-  Event.findByIdAndRemove(req.params.id, req.body)
+  NewEvent.findByIdAndRemove(req.params.id, req.body)
     .then(event => res.json({ mgs: 'Event entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such a event' }));
 });

@@ -32,7 +32,7 @@ function AdminPanel() {
       .catch(err => {
         console.log(err.message);
       });
-  }, []);
+  }, [newEvents]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -62,7 +62,14 @@ function AdminPanel() {
         console.log(res);
       })
       .catch(err => {
-        console.log(err.message);
+        console.log(err);
+      });
+    axios.delete(`${newUrl}/${id}`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

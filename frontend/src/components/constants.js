@@ -3,6 +3,8 @@
 
 export const url = 'https://cycling-events-api.onrender.com/events';
 
+// export const newUrl = 'http://localhost:8080/new';
+
 export const newUrl = 'https://cycling-events-api.onrender.com/new';
 
 export const categories = ['All Cycling', 'Gravel'];
