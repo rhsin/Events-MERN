@@ -15,7 +15,6 @@ import Geocode from 'react-geocode';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { newUrl, categories } from './constants'; 
-// import { getLatLng } from './EventFilter';
 
 function CreateEvent() {
   const navigate = useNavigate();
@@ -37,38 +36,18 @@ function CreateEvent() {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const getLatLng = () => {
-    Geocode.setApiKey(process.env.REACT_APP_API_KEY);
-    Geocode.fromAddress(event.location).then(
-      (res) => {
-        const result = res.results[0].geometry.location;
-        setEvent(({ ...event, ['lat']: result.lat }));
-        setEvent(({ ...event, ['lng']: result.lng }));
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  };
-
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    await getLatLng();
-    axios.post(newUrl, event)
+    Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+    Geocode.fromAddress(event.location)
       .then(res => {
-        setEvent({
-          name: '',
-          location: '',
-          lat: '',
-          lng: '',
-          link: '',
-          start: '',
-          end: '',
-          promoter: '',
-          description: '',
-          category: ''
-        });
-        navigate('/');
+        const result = res.results[0].geometry.location;
+        const newEvent = { ...event, ['lat']: result.lat, ['lng']: result.lng };
+        
+        axios.post(newUrl, newEvent)
+          .then(res => {
+            navigate('/');
+          })
       })
       .catch(err => {
         console.log(err.message);
