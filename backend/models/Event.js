@@ -5,6 +5,9 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  category: {
+    type: String
+  },
   location: {
     type: String
   },
@@ -33,9 +36,6 @@ const EventSchema = new mongoose.Schema({
     type: String
   },
   thumbnail: {
-    type: String
-  },
-  category: {
     type: String
   }
 });

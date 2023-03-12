@@ -13,12 +13,12 @@ function Map({ events, center, zoomLevel, handleOnLoad, getMapBounds }) {
     { width: '100%', height: '100%' } :
     { width: '360px', height: '375px' };
 
-  const mapStyle = isDesktop ? {} :
-    { 
-      disableDefaultUI: true,
-      zoomControl: true,
-      fullscreenControl: true 
-    };
+  const mapStyle = { 
+    disableDefaultUI: true,
+    zoomControl: true,
+    fullscreenControl: true,
+    mapTypeId: 'terrain' 
+  };
 
   return (
     <Box className='google-map'>

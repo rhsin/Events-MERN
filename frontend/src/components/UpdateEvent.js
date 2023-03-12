@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -89,10 +90,10 @@ function UpdateEvent() {
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardContent>     
           <Typography variant='body1' color='text.secondary'>
-            <h2 className='display-4 text-center'>Edit Event</h2>
+            <h1 className='text-center'>Edit Event</h1>
             <br />
             <form noValidate onSubmit={onSubmit}>
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='name'>Name</label>
                 <input
                   type='text'
@@ -102,10 +103,9 @@ function UpdateEvent() {
                   value={event.name}
                   onChange={onChange}
                 />
-              </div>
-              <br />
+              </Box>
               
-              <div className='form-group'>
+              <Box className='form-group'>
                 <FormControl size='small'>
                   <InputLabel id='select-category'>Category</InputLabel>
                   <Select 
@@ -120,9 +120,9 @@ function UpdateEvent() {
                     )}
                   </Select>
                 </FormControl>
-              </div>
+              </Box>
 
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='location'>Location</label>
                 <input
                   type='text'
@@ -132,9 +132,9 @@ function UpdateEvent() {
                   value={event.location}
                   onChange={onChange}
                 />
-              </div>
+              </Box>
 
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='link'>Link</label>
                 <input
                   type='text'
@@ -144,9 +144,9 @@ function UpdateEvent() {
                   value={event.link}
                   onChange={onChange}
                 />
-              </div>
+              </Box>
 
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='start'>Start</label>
                 <input
                   type='datetime-local'
@@ -156,9 +156,9 @@ function UpdateEvent() {
                   value={event.start}
                   onChange={onChange}
                 />
-              </div>
+              </Box>
 
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='end'>End</label>
                 <input
                   type='datetime-local'
@@ -168,9 +168,9 @@ function UpdateEvent() {
                   value={event.end}
                   onChange={onChange}
                 />
-              </div>
+              </Box>
 
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='promoter'>Promoter</label>
                 <input
                   type='text'
@@ -180,9 +180,9 @@ function UpdateEvent() {
                   value={event.promoter}
                   onChange={onChange}
                 />
-              </div>
+              </Box>
 
-              <div className='form-group'>
+              <Box className='form-group'>
                 <label htmlFor='description'>Description</label>
                 <textarea
                   type='text'
@@ -192,10 +192,11 @@ function UpdateEvent() {
                   value={event.description}
                   onChange={onChange}
                 />
-              </div>
+              </Box>
             </form>
           </Typography>
         </CardContent>
+
         <CardActions>
           <Button 
             onClick={onSubmit} 
@@ -204,6 +205,7 @@ function UpdateEvent() {
           >
             Update Event
           </Button>
+          
           <Button size='large'>
             <Link to='/'>Back To Map</Link>
           </Button>

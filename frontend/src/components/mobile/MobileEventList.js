@@ -27,7 +27,7 @@ function MobileEventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMobileMapState);
 
-  const { events, keyword, location } = state;
+  const { events, keyword } = state;
   const { mapRef, center, zoomLevel } = mapState;
 
   useEffect(() => {
@@ -59,9 +59,6 @@ function MobileEventList() {
 
   const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
     events.map((event, k) => <EventCard event={event} key={k} />); 
-
-  const results = location ? `Results in ${location}: ${mappedEvents.length}` :
-    `Results: ${mappedEvents.length}`;
   
   return (
     <Grid container sx={{ flexGrow: 1 }}>
@@ -126,17 +123,12 @@ function MobileEventList() {
       <Grid item sm={12}>
         <Stack direction='row'>
           <Button
-            size="large"
+            size='large'
             style={{ height: 60 }}
             onClick={() => setOpen(true)}
           >
             Open Event List
-          </Button>
-          <Box display='flex' alignItems='flex-end'>
-            <div className='results-count'>
-              {results}
-            </div>
-          </Box>      
+          </Button>   
         </Stack>
       </Grid>
 

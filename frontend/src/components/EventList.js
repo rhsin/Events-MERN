@@ -7,7 +7,6 @@ import InputLabel from '@mui/material/InputLabel';
 import List from '@mui/material/List';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Unstable_Grid2';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -27,7 +26,7 @@ function EventList() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapState, dispatchMap] = useReducer(reducer, initialMapState);
 
-  const { events, keyword, location, date1, date2, category } = state;
+  const { events, keyword, date1, date2, category } = state;
   const { mapRef, center, zoomLevel } = mapState;
 
   useEffect(() => {
@@ -56,118 +55,98 @@ function EventList() {
   const mappedEvents = mapRef ? filteredEvents(state, mapState).mappedEventList :
     events.map((event, k) => <EventCard event={event} key={k} />); 
 
-  const results = location ? `Results in ${location}: ${mappedEvents.length}` :
-    `Results: ${mappedEvents.length}`;
-
   return (
     <Grid container>
-      <Grid item sm={12}>
-        <Box>
-          <br />
-          <h2 className='display-4 text-center'>{category} Events</h2>
+      <Grid item sm={12}      
+        direction='row'
+        display='flex'
+        justifyContent='space-between'
+        alignItems='center'
+        sx={{ m: 1, maxHeight: 54 }}
+      >
+        <Box sx={{ m: 1.25, fontSize: 26, fontWeight: 350, color: '#1a1a77' }}>
+          {category} Events
         </Box>
-        <Box sx={{ ml: 1.3 }}>
-          <Link to='/signin'>Sign In</Link>
-        </Box>
-        <Stack
+
+        <Box 
           direction='row'
           display='flex'
-          justifyContent='space-between'
-          alignItems='flex-end'
-        > 
-          <Button size='large' style={{ margin: '0em 0em .5em 0em' }}>
-            <Link
-              to='/create-event'
-            >
-              Register New Event
-            </Link>
-          </Button>
+          justifyContent='center'
+          alignItems='center'
+        >
           <SearchBar 
             handleChange={keyword => handleChange(keyword)} 
             handleClick={searchLocation}  
-          />
-        </Stack>
+          />  
+
+          <FormControl size='small'>
+            <InputLabel id='select-category'>Category</InputLabel>
+            <Select 
+              style={{ minWidth: 100 }}
+              id='select-category' 
+              label='Category'
+              defaultValue='Gravel'
+              onChange={e => dispatch({ type: 'category', payload: e.target.value })}
+            >
+              {categories && categories.map((category, i) => 
+                <MenuItem value={category} key={i}>{category}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
+          
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Box className='date-picker'>
+              <DatePicker
+                label='Begin Date'
+                value={date1}
+                onChange={(newValue) => 
+                  dispatch({ type: 'date1', payload: Date.parse(newValue.$d) })
+                }
+                renderInput={(params) => <TextField size='small' {...params} />}
+              />
+            </Box>
+          </LocalizationProvider>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Box className='date-picker'>
+              <DatePicker
+                label='End Date'
+                value={date2}
+                onChange={(newValue) => 
+                  dispatch({ type: 'date2', payload: Date.parse(newValue.$d) })
+                }
+                renderInput={(params) => <TextField size='small' {...params} />}
+              />
+            </Box>
+          </LocalizationProvider>
+        </Box>
         
-        <Stack
-          direction='row'
-          display='flex'
-          justifyContent='space-between'
-          alignItems='flex-end'
-        > 
-          <Box>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <div className='date-picker'>
-                <DatePicker
-                  label='Begin Date'
-                  value={date1}
-                  onChange={(newValue) => 
-                    dispatch({ type: 'date1', payload: Date.parse(newValue.$d) })
-                  }
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </div>
-            </LocalizationProvider>
+        <Box sx={{ mt: 1, mb: 1 }}>
+          <Button size='large'>
+            <Link to='/signin'>
+              Sign In
+            </Link>
+          </Button>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <div className='date-picker'>
-                <DatePicker
-                  label='End Date'
-                  value={date2}
-                  onChange={(newValue) => 
-                    dispatch({ type: 'date2', payload: Date.parse(newValue.$d) })
-                  }
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </div>
-            </LocalizationProvider>
-          </Box>
-
-          <Stack direction='row'>
-            <FormControl size='small'>
-              <InputLabel id='select-category'>Category</InputLabel>
-              <Select 
-                style={{minWidth: 120}}
-                id='select-category' 
-                label='Category'
-                defaultValue='Gravel'
-                onChange={e => dispatch({ type: 'category', payload: e.target.value })}
-              >
-                {categories && categories.map((category, i) => 
-                  <MenuItem value={category} key={i}>{category}</MenuItem>
-                )}
-              </Select>
-            </FormControl>
-            
-            <FormControl size='small'>
-              <InputLabel id='select-radius'>Radius</InputLabel>
-                <Select 
-                  style={{minWidth: 120}}
-                  id='select-radius' 
-                  label='Radius'
-                  onChange={e => dispatchMap({ type: 'zoomLevel', payload: e.target.value })}
-                >
-                  <MenuItem value={12}>20 miles</MenuItem>
-                  <MenuItem value={10}>50 miles</MenuItem>
-                </Select>
-            </FormControl>
-          </Stack>
-        </Stack>
+          <Button size='large'>
+            <Link
+              to='/create-event'
+            >
+              Register Event
+            </Link>
+          </Button>
+        </Box>
       </Grid>
 
-      <Grid item sm={3.5}> 
-        <Box display='flex' alignItems='flex-end'>
-          <div className='results-count'>
-            {results}
-          </div>
-        </Box>
+      <Grid item sm={4}> 
         <List 
-          style={{maxHeight: 1165, overflow: 'auto'}}
+          style={{ maxHeight: 1000, overflow: 'auto' }}
         >
           {mappedEvents}
         </List>
       </Grid>
       
-      <Grid item sm={8.5}>
+      <Grid item sm={8}>
         <Map
           events={filteredEvents(state, mapState).mappedMarkers}
           center={defaultCenter(center)}

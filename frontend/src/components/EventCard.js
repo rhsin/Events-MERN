@@ -12,9 +12,10 @@ function EventCard({ event }) {
         <h2>
           <Link to={`/show-event/${event._id}`}>{event.name}</Link>
         </h2>
+        <p>{moment(event.start).format('MMMM Do, YYYY')}</p>
         <p>{event.location}</p>
         <p><a href={event.link}>{event.link}</a></p>
-        <p>{moment(event.start).format('MMMM Do, YYYY')}</p>
+        <p>{event.promoter}</p>
       </Box>
     </Paper>
   );

@@ -17,15 +17,16 @@ import moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
 
 import { url } from './constants'; 
+import { useAuthState } from '../firebase';
 
 function EventDetails() {
   const [event, setEvent] = useState({});
 
+  const { isAuthenticated } = useAuthState();
   const isDesktop = useMediaQuery('(min-width: 700px)');
+  const { id } = useParams();
 
   const imageStyle = isDesktop ? { height: 360 }  : { height: 120 };
-
-  const { id } = useParams();
   
   useEffect(() => {
     axios.get(`${url}/${id}`)
@@ -44,6 +45,10 @@ function EventDetails() {
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>{event.name}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Category</TableCell>
+            <TableCell>{event.category}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Location</TableCell>
@@ -69,38 +74,42 @@ function EventDetails() {
             <TableCell>Description</TableCell>
             <TableCell>{event.description}</TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell>Category</TableCell>
-            <TableCell>{event.category}</TableCell>
-          </TableRow>
         </TableBody>
       </Table>
     </Paper>
   );
 
   return (
-    <Container maxWidth='md' sx={{ marginTop: 2 }}>
+    <Container maxWidth='md' sx={{ mt: 2 }}>
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardMedia
           sx={imageStyle}
           // image={event.thumbnail}
         />
         <CardContent>
-          <Typography sx={{ m: 1 }} variant={isDesktop ? 'h4' : 'h5'} component='div'>
+          <Typography 
+            sx={{ mb: 2, ml: .5 }} 
+            variant={isDesktop ? 'h4' : 'h5'} 
+            component='div'
+          >
             {event.name}
           </Typography>
+
           <Typography variant='body1' color='text.secondary'>
             {eventList}
           </Typography>
         </CardContent>
+
         <CardActions>
-          <Button size={isDesktop ? 'large' : 'medium'} color='success'>
-            <Link
-              to={`/edit-event/${event._id}`}
-            >
-              Edit Event
-            </Link>
-          </Button>
+          {isAuthenticated &&
+            <Button size={isDesktop ? 'large' : 'medium'} color='success'>
+              <Link
+                to={`/edit-event/${event._id}`}
+              >
+                Edit Event
+              </Link>
+            </Button>
+          }
           <Button size={isDesktop ? 'large' : 'medium'}>
             <Link to='/'>Back To Map</Link>
           </Button>

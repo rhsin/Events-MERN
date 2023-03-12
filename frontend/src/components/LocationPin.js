@@ -43,6 +43,7 @@ function LocationPin({ event }) {
         <Typography style={styles.typography}>
           {moment(event.start).format('MMM')}
         </Typography>
+
         <ChatBubbleIcon 
           color='primary.dark' 
           style={{ 
@@ -50,6 +51,7 @@ function LocationPin({ event }) {
           }} 
         />
       </Box>
+
       <Popover
         id={id}
         open={open}
@@ -75,10 +77,12 @@ function LocationPin({ event }) {
                 {event.name}
               </Link>
             </Typography>
+            
             <Typography variant='body2' color='text.secondary'>
               {event.description}
             </Typography>
           </CardContent>
+
           <CardActions>
             <Button size='small' onClick={handleClose}>
               Close

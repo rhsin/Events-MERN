@@ -27,8 +27,8 @@ function EventsModal({ events, open, handleClose }) {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
       >
         <Paper sx={style}>
           <Button onClick={handleClose}>Back to Map</Button>

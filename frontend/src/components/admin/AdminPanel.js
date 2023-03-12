@@ -9,8 +9,9 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -33,18 +34,6 @@ function AdminPanel() {
         console.log(err.message);
       });
   }, [newEvents]);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        console.log('uid', uid)
-      } 
-      else {
-        console.log('User is logged out')
-      }
-    });
-  }, []);
 
   const handleLogout = () => {               
     signOut(auth).then(() => {
@@ -77,8 +66,11 @@ function AdminPanel() {
     <Container maxWidth='md' sx={{ marginTop: 2 }}>
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <br />
-        <h2 className='display-4 text-center'>Approve Events</h2>
-        <List style={{maxHeight: 1165, overflow: 'auto'}}>
+        <Typography variant='body1' color='text.secondary'>
+          <h1 className='text-center'>Approve Events</h1>
+        </Typography>
+
+        <List style={{maxHeight: 1200, overflow: 'auto'}}>
           {newEvents && newEvents.map(event => 
             <Paper elevation={3} className='new-event-paper'>
               <Box className='new-event-card'>
@@ -117,7 +109,11 @@ function AdminPanel() {
                   </TableBody>
                 </Table>
               </Box>
-              <Button onClick={id => handleClick(event._id)} sx={{ margin: '0 .75em .75em 1.25em' }}>
+
+              <Button 
+                onClick={id => handleClick(event._id)} 
+                sx={{ margin: '0 .75em .75em 1.25em' }}
+              >
                 Approve
               </Button>
             </Paper>
@@ -127,6 +123,7 @@ function AdminPanel() {
         <Button sx={{ margin: 1 }}>
           <Link to='/'>Back To Map</Link>
         </Button>
+
         <Button onClick={handleLogout}>
           Log out
         </Button>
