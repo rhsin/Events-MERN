@@ -1,7 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import List from '@mui/material/List';
@@ -13,8 +12,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
+import AccountMenu from './AccountMenu';
 import { url, categories } from './constants';
 import EventCard from './EventCard';
 import { filteredEvents, getMapBounds, handleSearch, defaultCenter } from './EventFilter';
@@ -64,7 +63,7 @@ function EventList() {
         alignItems='center'
         sx={{ m: 1, maxHeight: 54 }}
       >
-        <Box sx={{ m: 1.25, fontSize: 26, fontWeight: 350, color: '#1a1a77' }}>
+        <Box sx={{ m: 1.5, fontSize: 28, fontWeight: 400, color: '#1a1a77', flexBasis: 0, flexGrow: 1 }}>
           {category} Events
         </Box>
 
@@ -121,20 +120,8 @@ function EventList() {
           </LocalizationProvider>
         </Box>
         
-        <Box sx={{ mt: 1, mb: 1 }}>
-          <Button size='large'>
-            <Link to='/signin'>
-              Sign In
-            </Link>
-          </Button>
-
-          <Button size='large'>
-            <Link
-              to='/create-event'
-            >
-              Register Event
-            </Link>
-          </Button>
+        <Box sx={{ m: 1.5, flexBasis: 0, flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
+          <AccountMenu />
         </Box>
       </Grid>
 
