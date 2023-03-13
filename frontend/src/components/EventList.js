@@ -61,7 +61,7 @@ function EventList() {
         display='flex'
         justifyContent='space-between'
         alignItems='center'
-        sx={{ m: 1, maxHeight: 54 }}
+        sx={{ m: 1, maxHeight: 68 }}
       >
         <Box sx={{ m: 1.5, fontSize: 28, fontWeight: 400, color: '#1a1a77', flexBasis: 0, flexGrow: 1 }}>
           {category} Events
@@ -72,6 +72,7 @@ function EventList() {
           display='flex'
           justifyContent='center'
           alignItems='center'
+          sx={{ mt: .7 }}
         >
           <SearchBar 
             handleChange={keyword => handleChange(keyword)} 
@@ -101,7 +102,7 @@ function EventList() {
                 onChange={(newValue) => 
                   dispatch({ type: 'date1', payload: Date.parse(newValue.$d) })
                 }
-                renderInput={(params) => <TextField size='small' {...params} />}
+                renderInput={(params) => <TextField size='small' sx={{ p: 0 }} {...params} />}
               />
             </Box>
           </LocalizationProvider>
