@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
+import { getThumbnail } from './helpers';
+
 const styles = {
   typography: {
     color: 'white',
@@ -69,7 +71,7 @@ function LocationPin({ event }) {
         <Paper sx={{ maxWidth: 340 }} elevation={2}>
           <CardMedia
             component='img'
-            // image={event.thumbnail}
+            image={getThumbnail()}
           />
           <CardContent>
             <Typography gutterBottom variant='h7' component='div'>

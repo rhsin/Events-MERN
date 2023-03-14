@@ -17,6 +17,7 @@ import moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
 
 import { url } from './constants'; 
+import { getThumbnail } from './helpers';
 import { useAuthState } from '../firebase';
 
 function EventDetails() {
@@ -84,7 +85,7 @@ function EventDetails() {
       <Paper elevation={4} style={{backgroundColor: '#f4f4f9'}}>
         <CardMedia
           sx={imageStyle}
-          // image={event.thumbnail}
+          image={getThumbnail()}
         />
         <CardContent>
           <Typography 

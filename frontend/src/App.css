@@ -33,14 +33,15 @@ a {
 }
 
 .event-card h2 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 400;
   margin: .4em .3em;
 }
 
 .event-card h3, p {
+  font-size: .9rem;
   font-weight: 300;
-  margin: .4em;
+  padding: .2em .2em 0em 0em;
 }
 
 .new-event-paper {
