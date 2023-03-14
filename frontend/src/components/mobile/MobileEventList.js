@@ -124,7 +124,6 @@ function MobileEventList() {
         <Stack direction='row'>
           <Button
             size='large'
-            style={{ height: 60 }}
             onClick={() => setOpen(true)}
           >
             Open Event List

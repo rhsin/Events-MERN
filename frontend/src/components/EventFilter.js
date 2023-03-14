@@ -3,6 +3,7 @@ import Geocode from 'react-geocode';
 import { default_location } from "./constants";
 import EventCard from './EventCard';
 import { sortByCenterDistance } from './helpers';  
+import MobileEventCard from './mobile/MobileEventCard';
 
 export function filteredEvents(state, mapState) {
   const { events, date1, date2 } = state;

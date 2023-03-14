@@ -64,6 +64,10 @@ a {
 }
 
 @media screen and (max-width: 480px) {
+  .google-map {
+    height: 52vh;
+  }
+
   table {
     word-break: break-word;
   }
